@@ -112,7 +112,7 @@ export const payloadSentinel =
             if (options.disabled || !options.operations[operation] || !req.user?.id) {
               return;
             }
-            // the below retrives the version "before" this hook
+            // the below retrieves the version "before" this hook
             const latestVersions = await req.payload.findVersions({
               collection: collection.slug,
               limit: 1,
@@ -144,7 +144,7 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.delete || !req.user?.id) {
               return;
             }
-            // the below retrives the version "before" this hook
+            // the below retrieves the version "before" this hook
             const latestVersions = await req.payload.findVersions({
               collection: collection.slug,
               limit: 1,
@@ -176,7 +176,7 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.read || !req.user?.id) {
               return;
             }
-            // the below retrives the version "before" this hook
+            // the below retrieves the version "before" this hook
             const latestVersions = await req.payload.findVersions({
               collection: collection.slug,
               limit: 1,
@@ -225,7 +225,7 @@ export const payloadSentinel =
               limit: 1,
               sort: "-updatedAt",
             });
-            // the below retrives the version "before" this hook
+            // the below retrieves the version "before" this hook
             const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
@@ -247,7 +247,7 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.read || !req.user?.id) {
               return;
             }
-            // the below retrives the version "before" this hook
+            // the below retrieves the version "before" this hook
             const latestVersions = await req.payload.findGlobalVersions({
               slug: global.slug,
               limit: 1,
