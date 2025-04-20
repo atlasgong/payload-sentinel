@@ -1,10 +1,9 @@
 import type { Config, TypeWithID } from "payload";
 
-import type { PayloadSentinelConfig } from "../config.js";
+import type { PayloadSentinelConfig } from "./config.js";
 
-import { logCollectionAudit, logGlobalAudit } from "./log.js";
+import { logCollectionAudit, logGlobalAudit } from "./logger.js";
 
-// Define a type for the options needed by the hook injection
 type HookOptions = Required<
   Pick<
     PayloadSentinelConfig,

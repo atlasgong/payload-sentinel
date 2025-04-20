@@ -1,6 +1,6 @@
 import type { JsonObject, Operation, PayloadRequest, TypeWithID, TypeWithVersion } from "payload";
 
-import type { PayloadSentinelConfig } from "../config.js";
+import type { PayloadSentinelConfig } from "./config.js";
 
 type LogOptions = Required<Pick<PayloadSentinelConfig, "auditLogsCollection" | "disabled" | "operations">>;
 

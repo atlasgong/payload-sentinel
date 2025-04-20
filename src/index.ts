@@ -4,7 +4,7 @@ import type { PayloadSentinelConfig } from "./config.js";
 
 import { createAuditLogsCollection } from "./collections/AuditLogs.js";
 import { defaultConfig } from "./defaults.js";
-import { injectAuditHooks } from "./utils/injectHooks.js";
+import { injectAuditHooks } from "./injectHooks.js";
 
 export const payloadSentinel =
   (pluginOptions: PayloadSentinelConfig = {}) =>
