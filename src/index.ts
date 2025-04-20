@@ -1,113 +1,183 @@
-import type { CollectionSlug, Config } from 'payload'
+import type { Config } from "payload";
 
-export type PayloadAuditLogsConfig = {
-  /**
-   * List of collections to add a custom field
-   */
-  collections?: Partial<Record<CollectionSlug, true>>
-  disabled?: boolean
-}
+import type { PayloadAuditLogsConfig } from "./config.js";
+
+import { defaultConfig } from "./defaults.js";
 
 export const payloadAuditLogs =
-  (pluginOptions: PayloadAuditLogsConfig) =>
+  (pluginOptions: PayloadAuditLogsConfig = {}) =>
   (config: Config): Config => {
+    const options = {
+      ...defaultConfig,
+      ...pluginOptions,
+      operations: {
+        ...defaultConfig.operations,
+        ...pluginOptions.operations,
+      },
+    };
+
     if (!config.collections) {
-      config.collections = []
+      config.collections = [];
     }
 
+    // create the audit logs collection
     config.collections.push({
-      slug: 'plugin-collection',
+      slug: options.auditLogsCollection,
+      access: {
+        create: () => {
+          return false;
+        },
+        delete: () => {
+          return false;
+        },
+        update: () => {
+          return false;
+        },
+      },
+      admin: {
+        defaultColumns: ["timestamp", "user", "operation", "resourceType", "documentId"],
+        disableCopyToLocale: true,
+        useAsTitle: "timestamp",
+      },
       fields: [
         {
-          name: 'id',
-          type: 'text',
+          name: "timestamp",
+          type: "date",
+          admin: {
+            date: {
+              displayFormat: "yyyy-MM-dd HH:mm:ss.SSS",
+            },
+            readOnly: true,
+          },
+          required: true,
+        },
+        {
+          name: "user",
+          type: "relationship",
+          admin: {
+            readOnly: true,
+          },
+          relationTo: options.authCollection,
+          required: true,
+        },
+        {
+          name: "operation",
+          type: "select",
+          admin: {
+            readOnly: true,
+          },
+          options: ["create", "read", "update", "delete"],
+          required: true,
+        },
+        {
+          name: "resourceType",
+          type: "text",
+          admin: {
+            readOnly: true,
+          },
+          required: true,
+        },
+        {
+          name: "documentId",
+          type: "text",
+          admin: {
+            readOnly: true,
+          },
+          label: "Document ID",
+          required: true,
         },
       ],
-    })
+    });
 
-    if (pluginOptions.collections) {
-      for (const collectionSlug in pluginOptions.collections) {
-        const collection = config.collections.find(
-          (collection) => collection.slug === collectionSlug,
-        )
-
-        if (collection) {
-          collection.fields.push({
-            name: 'addedByPlugin',
-            type: 'text',
-            admin: {
-              position: 'sidebar',
-            },
-          })
-        }
-      }
-    }
-
-    /**
-     * If the plugin is disabled, we still want to keep added collections/fields so the database schema is consistent which is important for migrations.
-     * If your plugin heavily modifies the database schema, you may want to remove this property.
-     */
-    if (pluginOptions.disabled) {
-      return config
-    }
-
-    if (!config.endpoints) {
-      config.endpoints = []
-    }
-
-    if (!config.admin) {
-      config.admin = {}
-    }
-
-    if (!config.admin.components) {
-      config.admin.components = {}
-    }
-
-    if (!config.admin.components.beforeDashboard) {
-      config.admin.components.beforeDashboard = []
-    }
-
-    config.admin.components.beforeDashboard.push(
-      `payload-audit-logs/client#BeforeDashboardClient`,
-    )
-    config.admin.components.beforeDashboard.push(
-      `payload-audit-logs/rsc#BeforeDashboardServer`,
-    )
-
-    config.endpoints.push({
-      handler: () => {
-        return Response.json({ message: 'Hello from custom endpoint' })
-      },
-      method: 'get',
-      path: '/my-plugin-endpoint',
-    })
-
-    const incomingOnInit = config.onInit
-
-    config.onInit = async (payload) => {
-      // Ensure we are executing any existing onInit functions before running our own.
-      if (incomingOnInit) {
-        await incomingOnInit(payload)
+    // add hooks to all collections that aren't explicitly excluded
+    const excludedCollections = options.excludedCollections || {};
+    for (const collection of config.collections) {
+      if (excludedCollections[collection.slug]) {
+        continue;
       }
 
-      const { totalDocs } = await payload.count({
-        collection: 'plugin-collection',
-        where: {
-          id: {
-            equals: 'seeded-by-plugin',
+      collection.hooks = {
+        ...collection.hooks,
+        afterChange: [
+          async ({ doc, operation, req }) => {
+            // log only if plugin enabled, change operation enabled,and is user operation
+            if (options.disabled || !options.operations[operation] || !req.user?.id) {
+              return;
+            }
+
+            await req.payload.create({
+              collection: options.auditLogsCollection,
+              data: {
+                documentId: doc.id,
+                operation, // could be 'create' or 'update'
+                resourceType: collection.slug,
+                timestamp: new Date(),
+                user: req.user?.id,
+              },
+            });
           },
-        },
-      })
+          ...(collection.hooks?.afterChange || []),
+        ],
+        afterDelete: [
+          async ({ doc, req }) => {
+            // log only if plugin enabled, delete operation enabled, and is user operation
+            if (options.disabled || !options.operations.delete || !req.user?.id) {
+              return;
+            }
 
-      if (totalDocs === 0) {
-        await payload.create({
-          collection: 'plugin-collection',
-          data: {
-            id: 'seeded-by-plugin',
+            await req.payload.create({
+              collection: options.auditLogsCollection,
+              data: {
+                documentId: doc.id,
+                operation: "delete",
+                resourceType: collection.slug,
+                timestamp: new Date(),
+                user: req.user?.id,
+              },
+            });
           },
-        })
-      }
+          ...(collection.hooks?.afterDelete || []),
+        ],
+        afterRead: [
+          async ({ doc, req }) => {
+            // log only if plugin enabled, read operation enabled, and is user operation
+            if (options.disabled || !options.operations.read || !req.user?.id) {
+              return;
+            }
+
+            await req.payload.create({
+              collection: options.auditLogsCollection,
+              data: {
+                documentId: doc.id,
+                operation: "read",
+                resourceType: collection.slug,
+                timestamp: new Date(),
+                user: req.user?.id,
+              },
+            });
+          },
+          ...(collection.hooks?.afterRead || []),
+        ],
+      };
     }
 
-    return config
-  }
+    // add admin UI components only if plugin is enabled
+    if (!options.disabled) {
+      if (!config.admin) {
+        config.admin = {};
+      }
+
+      if (!config.admin.components) {
+        config.admin.components = {};
+      }
+
+      if (!config.admin.components.beforeDashboard) {
+        config.admin.components.beforeDashboard = [];
+      }
+
+      // config.admin.components.beforeDashboard.push(`payload-audit-logs/client#BeforeDashboardClient`);
+      // config.admin.components.beforeDashboard.push(`payload-audit-logs/rsc#BeforeDashboardServer`);
+    }
+
+    return config;
+  };

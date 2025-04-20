@@ -51,13 +51,7 @@ export default buildConfig({
   onInit: async (payload) => {
     await seed(payload);
   },
-  plugins: [
-    payloadAuditLogs({
-      collections: {
-        posts: true,
-      },
-    }),
-  ],
+  plugins: [payloadAuditLogs()],
   secret: process.env.PAYLOAD_SECRET || "test-secret_key",
   sharp,
   typescript: {
