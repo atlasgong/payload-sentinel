@@ -11,6 +11,14 @@ type HookOptions = Required<
   >
 >;
 
+/**
+ * Injects audit hooks into the provided Payload config's collections and globals.
+ * Hooks are added to collections and globals that are not excluded by options.
+ *
+ * @param {Config} config - The Payload configuration object to modify.
+ * @param {HookOptions} options - The options controlling audit hook injection.
+ * @returns {void}
+ */
 export const injectAuditHooks = (config: Config, options: HookOptions): void => {
   // ensure collections and globals arrays exist
   if (!config.collections) {
