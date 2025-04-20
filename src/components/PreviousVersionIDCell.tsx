@@ -3,7 +3,7 @@ import type { DefaultServerCellComponentProps } from "payload";
 export const PreviousVersionIDCell = (props: DefaultServerCellComponentProps) => {
   const { cellData, rowData } = props;
   if (!cellData) {
-    return "None";
+    return <span>None</span>;
   }
 
   return (
