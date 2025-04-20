@@ -271,21 +271,5 @@ export const payloadSentinel =
       };
     }
 
-    // add admin UI components only if plugin is enabled
-    if (!options.disabled) {
-      if (!config.admin) {
-        config.admin = {};
-      }
-      if (!config.admin.components) {
-        config.admin.components = {};
-      }
-      if (!config.admin.components.beforeDashboard) {
-        config.admin.components.beforeDashboard = [];
-      }
-
-      // config.admin.components.beforeDashboard.push(`payload-sentinel/client#BeforeDashboardClient`);
-      // config.admin.components.beforeDashboard.push(`payload-sentinel/rsc#BeforeDashboardServer`);
-    }
-
     return config;
   };
