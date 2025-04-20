@@ -11,6 +11,7 @@ export const defaultConfig: Required<PayloadSentinelConfig> = {
   auditLogsCollection: "audit-logs",
   authCollection: "users",
   disabled: false,
-  excludedCollections: {},
+  excludedCollections: [],
+  excludedGlobals: [],
   operations: defaultCRUDOperations,
 };

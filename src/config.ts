@@ -1,4 +1,4 @@
-import type { CollectionSlug } from "payload";
+import type { CollectionSlug, GlobalSlug } from "payload";
 
 export type CRUDOperations = {
   /**
@@ -49,9 +49,16 @@ export type PayloadSentinelConfig = {
   /**
    * List of collections to exclude from audit logging.
    * By default, all collections will be logged except those specified here.
-   * @example { posts: true, media: true }
+   * @example ['posts', 'media']
    */
-  excludedCollections?: Partial<Record<CollectionSlug, true>>;
+  excludedCollections?: CollectionSlug[];
+
+  /**
+   * List of globals to exclude from audit logging.
+   * By default, all globals will be logged except those specified here.
+   * @example ['settings']
+   */
+  excludedGlobals?: GlobalSlug[];
 
   /**
    * Configure which CRUD operations to log.
