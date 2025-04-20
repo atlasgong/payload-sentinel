@@ -2,7 +2,7 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
-import { payloadSentinel } from "payload-audit-logs";
+import { payloadSentinel } from "payload-sentinel";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
@@ -48,6 +48,17 @@ export default buildConfig({
   }),
   editor: lexicalEditor(),
   email: testEmailAdapter,
+  globals: [
+    {
+      slug: "settings",
+      fields: [
+        {
+          name: "example",
+          type: "richText",
+        },
+      ],
+    },
+  ],
   onInit: async (payload) => {
     await seed(payload);
   },
