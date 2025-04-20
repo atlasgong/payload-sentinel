@@ -33,7 +33,7 @@ export const payloadSentinel =
         update: () => false,
       },
       admin: {
-        defaultColumns: ["timestamp", "user", "operation", "resourceType", "documentId"],
+        defaultColumns: ["timestamp", "operation", "resourceType", "documentId", "previousVersionId", "user"],
         disableCopyToLocale: true,
         useAsTitle: "timestamp",
       },
@@ -45,13 +45,6 @@ export const payloadSentinel =
             date: { displayFormat: "yyyy-MM-dd HH:mm:ss.SSS" },
             readOnly: true,
           },
-          required: true,
-        },
-        {
-          name: "user",
-          type: "relationship",
-          admin: { readOnly: true },
-          relationTo: options.authCollection,
           required: true,
         },
         {
@@ -70,8 +63,32 @@ export const payloadSentinel =
         {
           name: "documentId",
           type: "text",
-          admin: { readOnly: true },
+          admin: {
+            components: {
+              Cell: "payload-sentinel/rsc#DocumentIDCell",
+            },
+            readOnly: true,
+          },
           label: "Document ID",
+          required: true,
+        },
+        {
+          name: "previousVersionId",
+          type: "text",
+          admin: {
+            components: {
+              Cell: "payload-sentinel/rsc#PreviousVersionIDCell",
+            },
+            readOnly: true,
+          },
+          label: "Previous Version ID",
+          required: false,
+        },
+        {
+          name: "user",
+          type: "relationship",
+          admin: { readOnly: true },
+          relationTo: options.authCollection,
           required: true,
         },
       ],
@@ -95,11 +112,24 @@ export const payloadSentinel =
             if (options.disabled || !options.operations[operation] || !req.user?.id) {
               return;
             }
+            // the below retrives the version "before" this hook
+            const latestVersions = await req.payload.findVersions({
+              collection: collection.slug,
+              limit: 1,
+              sort: "-updatedAt",
+              where: {
+                parent: {
+                  equals: doc.id,
+                },
+              },
+            });
+            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
               data: {
                 documentId: doc.id,
                 operation, // could be 'create' or 'update'
+                previousVersionId: previousVersion?.id,
                 resourceType: collection.slug,
                 timestamp: new Date(),
                 user: req.user?.id,
@@ -114,11 +144,24 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.delete || !req.user?.id) {
               return;
             }
+            // the below retrives the version "before" this hook
+            const latestVersions = await req.payload.findVersions({
+              collection: collection.slug,
+              limit: 1,
+              sort: "-updatedAt",
+              where: {
+                parent: {
+                  equals: doc.id,
+                },
+              },
+            });
+            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
               data: {
                 documentId: doc.id,
                 operation: "delete",
+                previousVersionId: previousVersion?.id,
                 resourceType: collection.slug,
                 timestamp: new Date(),
                 user: req.user?.id,
@@ -133,11 +176,24 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.read || !req.user?.id) {
               return;
             }
+            // the below retrives the version "before" this hook
+            const latestVersions = await req.payload.findVersions({
+              collection: collection.slug,
+              limit: 1,
+              sort: "-updatedAt",
+              where: {
+                parent: {
+                  equals: doc.id,
+                },
+              },
+            });
+            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
               data: {
                 documentId: doc.id,
                 operation: "read",
+                previousVersionId: previousVersion?.id,
                 resourceType: collection.slug,
                 timestamp: new Date(),
                 user: req.user?.id,
@@ -164,11 +220,19 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.update || !req.user?.id) {
               return;
             }
+            const latestVersions = await req.payload.findGlobalVersions({
+              slug: global.slug,
+              limit: 1,
+              sort: "-updatedAt",
+            });
+            // the below retrives the version "before" this hook
+            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
               data: {
                 documentId: global.slug,
                 operation: "update",
+                previousVersionId: previousVersion?.id,
                 resourceType: global.slug,
                 timestamp: new Date(),
                 user: req.user?.id,
@@ -183,11 +247,19 @@ export const payloadSentinel =
             if (options.disabled || !options.operations.read || !req.user?.id) {
               return;
             }
+            // the below retrives the version "before" this hook
+            const latestVersions = await req.payload.findGlobalVersions({
+              slug: global.slug,
+              limit: 1,
+              sort: "-updatedAt",
+            });
+            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
             await req.payload.create({
               collection: options.auditLogsCollection,
               data: {
                 documentId: global.slug,
                 operation: "read",
+                previousVersionId: previousVersion?.id,
                 resourceType: global.slug,
                 timestamp: new Date(),
                 user: req.user?.id,
