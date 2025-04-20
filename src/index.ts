@@ -2,6 +2,7 @@ import type { Config, JsonObject, Operation, PayloadRequest, TypeWithID, TypeWit
 
 import type { PayloadSentinelConfig } from "./config.js";
 
+import { createAuditLogsCollection } from "./collections/AuditLogs.js";
 import { defaultConfig } from "./defaults.js";
 
 export const payloadSentinel =
@@ -121,79 +122,12 @@ export const payloadSentinel =
       config.globals = [];
     }
 
-    // create the audit logs collection
-    config.collections.push({
-      slug: options.auditLogsCollection,
-      access: {
-        create: () => false,
-        delete: () => false,
-        update: () => false,
-      },
-      admin: {
-        defaultColumns: ["timestamp", "operation", "resourceType", "documentId", "previousVersionId", "user"],
-        disableCopyToLocale: true,
-        useAsTitle: "timestamp",
-      },
-      fields: [
-        {
-          name: "timestamp",
-          type: "date",
-          admin: {
-            date: { displayFormat: "yyyy-MM-dd HH:mm:ss.SSS" },
-            readOnly: true,
-          },
-          required: true,
-        },
-        {
-          name: "operation",
-          type: "select",
-          admin: { readOnly: true },
-          options: ["create", "read", "update", "delete"],
-          required: true,
-        },
-        {
-          name: "resourceType",
-          type: "text",
-          admin: { readOnly: true },
-          required: true,
-        },
-        {
-          name: "documentId",
-          type: "text",
-          admin: {
-            components: {
-              Cell: "payload-sentinel/rsc#DocumentIDCell",
-            },
-            readOnly: true,
-          },
-          label: "Document ID",
-          required: true,
-        },
-        {
-          name: "previousVersionId",
-          type: "text",
-          admin: {
-            components: {
-              Cell: "payload-sentinel/rsc#PreviousVersionIDCell",
-            },
-            readOnly: true,
-          },
-          label: "Previous Version ID",
-          required: false,
-        },
-        {
-          name: "user",
-          type: "relationship",
-          admin: { readOnly: true },
-          relationTo: options.authCollection,
-          required: true,
-        },
-      ],
-      labels: {
-        plural: "Audit Log",
-        singular: "Audit Log",
-      },
+    // create and inject the audit logs collection
+    const auditLogCollection = createAuditLogsCollection({
+      auditLogsCollection: options.auditLogsCollection,
+      authCollection: options.authCollection,
     });
+    config.collections.push(auditLogCollection);
 
     // add hooks to all collections that aren't explicitly excluded
     for (const collection of config.collections) {
