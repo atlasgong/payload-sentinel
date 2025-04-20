@@ -2,7 +2,7 @@ import type { DefaultServerCellComponentProps } from "payload";
 
 export const DocumentIDCell = (props: DefaultServerCellComponentProps) => {
   const { cellData, rowData } = props;
-  if (!cellData) {
+  if (!cellData || !rowData["resourceType"]) {
     return <span>Not Found</span>;
   }
 
