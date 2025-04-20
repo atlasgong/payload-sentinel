@@ -1,4 +1,4 @@
-import type { Config } from "payload";
+import type { Config, Operation, PayloadRequest } from "payload";
 
 import type { PayloadSentinelConfig } from "./config.js";
 
@@ -16,6 +16,75 @@ export const payloadSentinel =
         ...(pluginOptions.operations || {}),
       },
     };
+
+    async function logCollectionAudit({
+      collectionSlug,
+      doc,
+      operation,
+      req,
+    }: {
+      collectionSlug: string;
+      doc: Record<string, unknown>;
+      operation: Operation;
+      req: PayloadRequest;
+    }) {
+      if (options.disabled || !options.operations[operation] || !req.user?.id) {
+        return;
+      }
+      const latestVersions = await req.payload.findVersions({
+        collection: collectionSlug,
+        limit: 1,
+        sort: "-updatedAt",
+        where: {
+          parent: {
+            equals: doc.id,
+          },
+        },
+      });
+      const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
+      await req.payload.create({
+        collection: options.auditLogsCollection,
+        data: {
+          documentId: doc.id,
+          operation,
+          previousVersionId: previousVersion?.id,
+          resourceType: collectionSlug,
+          timestamp: new Date(),
+          user: req.user?.id,
+        },
+      });
+    }
+
+    async function logGlobalAudit({
+      globalSlug,
+      operation,
+      req,
+    }: {
+      globalSlug: string;
+      operation: Operation;
+      req: PayloadRequest;
+    }) {
+      if (options.disabled || !options.operations[operation] || !req.user?.id) {
+        return;
+      }
+      const latestVersions = await req.payload.findGlobalVersions({
+        slug: globalSlug,
+        limit: 1,
+        sort: "-updatedAt",
+      });
+      const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
+      await req.payload.create({
+        collection: options.auditLogsCollection,
+        data: {
+          documentId: globalSlug,
+          operation,
+          previousVersionId: previousVersion?.id,
+          resourceType: globalSlug,
+          timestamp: new Date(),
+          user: req.user?.id,
+        },
+      });
+    }
 
     if (!config.collections) {
       config.collections = [];
@@ -108,96 +177,33 @@ export const payloadSentinel =
         ...collection.hooks,
         afterChange: [
           async ({ doc, operation, req }) => {
-            // log only if plugin enabled, change operation enabled,and is user operation
-            if (options.disabled || !options.operations[operation] || !req.user?.id) {
-              return;
-            }
-            // the below retrieves the version "before" this hook
-            const latestVersions = await req.payload.findVersions({
-              collection: collection.slug,
-              limit: 1,
-              sort: "-updatedAt",
-              where: {
-                parent: {
-                  equals: doc.id,
-                },
-              },
-            });
-            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
-            await req.payload.create({
-              collection: options.auditLogsCollection,
-              data: {
-                documentId: doc.id,
-                operation, // could be 'create' or 'update'
-                previousVersionId: previousVersion?.id,
-                resourceType: collection.slug,
-                timestamp: new Date(),
-                user: req.user?.id,
-              },
+            await logCollectionAudit({
+              collectionSlug: collection.slug,
+              doc,
+              operation,
+              req,
             });
           },
           ...(collection.hooks?.afterChange || []),
         ],
         afterDelete: [
           async ({ doc, req }) => {
-            // log only if plugin enabled, delete operation enabled, and is user operation
-            if (options.disabled || !options.operations.delete || !req.user?.id) {
-              return;
-            }
-            // the below retrieves the version "before" this hook
-            const latestVersions = await req.payload.findVersions({
-              collection: collection.slug,
-              limit: 1,
-              sort: "-updatedAt",
-              where: {
-                parent: {
-                  equals: doc.id,
-                },
-              },
-            });
-            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
-            await req.payload.create({
-              collection: options.auditLogsCollection,
-              data: {
-                documentId: doc.id,
-                operation: "delete",
-                previousVersionId: previousVersion?.id,
-                resourceType: collection.slug,
-                timestamp: new Date(),
-                user: req.user?.id,
-              },
+            await logCollectionAudit({
+              collectionSlug: collection.slug,
+              doc,
+              operation: "delete",
+              req,
             });
           },
           ...(collection.hooks?.afterDelete || []),
         ],
         afterRead: [
           async ({ doc, req }) => {
-            // log only if plugin enabled, read operation enabled, and is user operation
-            if (options.disabled || !options.operations.read || !req.user?.id) {
-              return;
-            }
-            // the below retrieves the version "before" this hook
-            const latestVersions = await req.payload.findVersions({
-              collection: collection.slug,
-              limit: 1,
-              sort: "-updatedAt",
-              where: {
-                parent: {
-                  equals: doc.id,
-                },
-              },
-            });
-            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
-            await req.payload.create({
-              collection: options.auditLogsCollection,
-              data: {
-                documentId: doc.id,
-                operation: "read",
-                previousVersionId: previousVersion?.id,
-                resourceType: collection.slug,
-                timestamp: new Date(),
-                user: req.user?.id,
-              },
+            await logCollectionAudit({
+              collectionSlug: collection.slug,
+              doc,
+              operation: "read",
+              req,
             });
           },
           ...(collection.hooks?.afterRead || []),
@@ -216,54 +222,20 @@ export const payloadSentinel =
         afterChange: [
           async ({ req }) => {
             // globals only trigger 'update' in afterChange
-            // log only if plugin enabled, update operation enabled, and is user operation
-            if (options.disabled || !options.operations.update || !req.user?.id) {
-              return;
-            }
-            const latestVersions = await req.payload.findGlobalVersions({
-              slug: global.slug,
-              limit: 1,
-              sort: "-updatedAt",
-            });
-            // the below retrieves the version "before" this hook
-            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
-            await req.payload.create({
-              collection: options.auditLogsCollection,
-              data: {
-                documentId: global.slug,
-                operation: "update",
-                previousVersionId: previousVersion?.id,
-                resourceType: global.slug,
-                timestamp: new Date(),
-                user: req.user?.id,
-              },
+            await logGlobalAudit({
+              globalSlug: global.slug,
+              operation: "update",
+              req,
             });
           },
           ...(global.hooks?.afterChange || []),
         ],
         afterRead: [
           async ({ req }) => {
-            // log only if plugin enabled, read operation enabled, and is user operation
-            if (options.disabled || !options.operations.read || !req.user?.id) {
-              return;
-            }
-            // the below retrieves the version "before" this hook
-            const latestVersions = await req.payload.findGlobalVersions({
-              slug: global.slug,
-              limit: 1,
-              sort: "-updatedAt",
-            });
-            const previousVersion = latestVersions.totalDocs > 0 ? latestVersions.docs[0] : undefined;
-            await req.payload.create({
-              collection: options.auditLogsCollection,
-              data: {
-                documentId: global.slug,
-                operation: "read",
-                previousVersionId: previousVersion?.id,
-                resourceType: global.slug,
-                timestamp: new Date(),
-                user: req.user?.id,
-              },
+            await logGlobalAudit({
+              globalSlug: global.slug,
+              operation: "read",
+              req,
             });
           },
           ...(global.hooks?.afterRead || []),

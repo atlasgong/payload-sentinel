@@ -11,7 +11,9 @@ export const PreviousVersionIDCell = (props: DefaultServerCellComponentProps) =>
   }
 
   return (
-    <a href={`/admin/collections/${rowData["resourceType"]}/${rowData["documentId"]}/versions/${cellData}`}>
+    <a
+      href={`/admin/collections/${encodeURIComponent(rowData["resourceType"])}/${encodeURIComponent(rowData["documentId"])}/versions/${encodeURIComponent(cellData)}`}
+    >
       {cellData}
     </a>
   );

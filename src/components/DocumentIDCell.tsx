@@ -6,5 +6,9 @@ export const DocumentIDCell = (props: DefaultServerCellComponentProps) => {
     return <span>Not Found</span>;
   }
 
-  return <a href={`/admin/collections/${rowData["resourceType"]}/${cellData}`}>{cellData}</a>;
+  return (
+    <a href={`/admin/collections/${encodeURIComponent(rowData["resourceType"])}/${encodeURIComponent(cellData)}`}>
+      {cellData}
+    </a>
+  );
 };
