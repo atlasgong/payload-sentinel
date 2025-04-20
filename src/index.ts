@@ -1,11 +1,11 @@
 import type { Config } from "payload";
 
-import type { PayloadAuditLogsConfig } from "./config.js";
+import type { PayloadSentinelConfig } from "./config.js";
 
 import { defaultConfig } from "./defaults.js";
 
-export const payloadAuditLogs =
-  (pluginOptions: PayloadAuditLogsConfig = {}) =>
+export const payloadSentinel =
+  (pluginOptions: PayloadSentinelConfig = {}) =>
   (config: Config): Config => {
     const options = {
       ...defaultConfig,
@@ -175,8 +175,8 @@ export const payloadAuditLogs =
         config.admin.components.beforeDashboard = [];
       }
 
-      // config.admin.components.beforeDashboard.push(`payload-audit-logs/client#BeforeDashboardClient`);
-      // config.admin.components.beforeDashboard.push(`payload-audit-logs/rsc#BeforeDashboardServer`);
+      // config.admin.components.beforeDashboard.push(`payload-sentinel/client#BeforeDashboardClient`);
+      // config.admin.components.beforeDashboard.push(`payload-sentinel/rsc#BeforeDashboardServer`);
     }
 
     return config;

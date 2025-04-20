@@ -2,7 +2,7 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
-import { payloadAuditLogs } from "payload-audit-logs";
+import { payloadSentinel } from "payload-audit-logs";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
@@ -51,7 +51,7 @@ export default buildConfig({
   onInit: async (payload) => {
     await seed(payload);
   },
-  plugins: [payloadAuditLogs()],
+  plugins: [payloadSentinel()],
   secret: process.env.PAYLOAD_SECRET || "test-secret_key",
   sharp,
   typescript: {

@@ -1,5 +1,5 @@
 {
-  "name": "payload-audit-logs",
+  "name": "payload-sentinel",
   "version": "0.1.0",
   "description": "Audit logging for Payload CMS.",
   "author": {
@@ -7,9 +7,9 @@
     "email": "dev@atlasgong.com",
     "url": "https://atlasgong.dev"
   },
-  "homepage": "github:atlasgong/payload-audit-logs",
-  "repository": "github:atlasgong/payload-audit-logs",
-  "bugs": "https://github.com/atlasgong/payload-audit-logs/issues",
+  "homepage": "github:atlasgong/payload-sentinel",
+  "repository": "github:atlasgong/payload-sentinel",
+  "bugs": "https://github.com/atlasgong/payload-sentinel/issues",
   "keywords": [
     "payload-plugin"
   ],

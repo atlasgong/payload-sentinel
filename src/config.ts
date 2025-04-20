@@ -26,7 +26,7 @@ export type CRUDOperations = {
   update?: boolean;
 };
 
-export type PayloadAuditLogsConfig = {
+export type PayloadSentinelConfig = {
   /**
    * The slug for the audit logs collection.
    * @default 'audit-logs'

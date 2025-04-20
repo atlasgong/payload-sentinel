@@ -16,20 +16,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@payload-config": [
-        "./payload.config.ts"
-      ],
-      "payload-audit-logs": [
-        "../src/index.ts"
-      ],
-      "payload-audit-logs/client": [
-        "../src/exports/client.ts"
-      ],
-      "payload-audit-logs/rsc": [
-        "../src/exports/rsc.ts"
-      ]
+      "@payload-config": ["./payload.config.ts"],
+      "payload-sentinel": ["../src/index.ts"],
+      "payload-sentinel/client": ["../src/exports/client.ts"],
+      "payload-sentinel/rsc": ["../src/exports/rsc.ts"]
     },
     "noEmit": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": false
   }
 }

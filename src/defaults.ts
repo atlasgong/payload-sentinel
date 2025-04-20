@@ -1,4 +1,4 @@
-import type { CRUDOperations, PayloadAuditLogsConfig } from "./config.js";
+import type { CRUDOperations, PayloadSentinelConfig } from "./config.js";
 
 export const defaultCRUDOperations: CRUDOperations = {
   create: true,
@@ -7,7 +7,7 @@ export const defaultCRUDOperations: CRUDOperations = {
   update: true,
 };
 
-export const defaultConfig: Required<PayloadAuditLogsConfig> = {
+export const defaultConfig: Required<PayloadSentinelConfig> = {
   auditLogsCollection: "audit-logs",
   authCollection: "users",
   disabled: false,
