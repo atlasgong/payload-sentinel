@@ -2,7 +2,7 @@ import type { Config } from "payload";
 
 import type { PayloadSentinelConfig } from "./config.js";
 
-import { createAuditLogsCollection } from "./collections/AuditLogs.js";
+import { AuditLog } from "./collections/AuditLog.js";
 import { defaultConfig } from "./defaults.js";
 import { injectAuditHooks } from "./injectHooks.js";
 
@@ -27,7 +27,7 @@ export const payloadSentinel =
     }
 
     // create and inject the audit logs collection
-    const auditLogCollection = createAuditLogsCollection({
+    const auditLogCollection = AuditLog({
       auditLogsCollection: options.auditLogsCollection,
       authCollection: options.authCollection,
     });
