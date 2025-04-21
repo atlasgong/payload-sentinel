@@ -50,7 +50,9 @@
     "lint": "eslint",
     "lint:fix": "eslint ./src --fix",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "test": "jest"
+    "test": "pnpm test:unit && pnpm test:int",
+    "test:unit": "jest src/ --detectOpenHandles",
+    "test:int": "jest dev/ --detectOpenHandles"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
