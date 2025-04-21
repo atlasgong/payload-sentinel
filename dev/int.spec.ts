@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Here are your integration tests for the plugin.
  * They don't require running your Next.js so they are fast
