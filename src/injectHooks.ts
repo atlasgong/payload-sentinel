@@ -4,7 +4,7 @@ import type { PayloadSentinelConfig } from "./config.js";
 
 import { logCollectionAudit, logGlobalAudit } from "./logger.js";
 
-type HookOptions = Required<
+export type HookOptions = Required<
   Pick<
     PayloadSentinelConfig,
     "auditLogsCollection" | "disabled" | "excludedCollections" | "excludedGlobals" | "operations"

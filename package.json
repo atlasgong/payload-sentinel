@@ -50,7 +50,9 @@
     "lint": "eslint",
     "lint:fix": "eslint ./src --fix",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "test": "jest"
+    "test": "pnpm test:unit && pnpm test:int",
+    "test:unit": "jest src/ --detectOpenHandles",
+    "test:int": "jest dev/ --detectOpenHandles"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -70,6 +72,7 @@
     "@types/react-dom": "19.1.2",
     "copyfiles": "2.4.1",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
     "eslint": "^9.23.0",
     "eslint-config-next": "15.3.0",
     "graphql": "^16.8.1",
