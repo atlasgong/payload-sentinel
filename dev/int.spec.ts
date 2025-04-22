@@ -7,7 +7,6 @@
 import type { Payload } from "payload";
 
 import dotenv from "dotenv";
-import { MongoMemoryReplSet } from "mongodb-memory-server";
 import path from "path";
 import { getPayload } from "payload";
 import { fileURLToPath } from "url";
@@ -18,7 +17,6 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 let payload: Payload;
 let restClient: NextRESTClient;
-let memoryDB: MongoMemoryReplSet | undefined;
 
 describe("Plugin tests", () => {
   beforeAll(async () => {
@@ -29,19 +27,6 @@ describe("Plugin tests", () => {
       path: path.resolve(dirname, "./.env"),
     });
 
-    if (!process.env.DATABASE_URI) {
-      console.log("Starting memory database");
-      memoryDB = await MongoMemoryReplSet.create({
-        replSet: {
-          count: 3,
-          dbName: "payloadmemory",
-        },
-      });
-      console.log("Memory database started");
-
-      process.env.DATABASE_URI = `${memoryDB.getUri()}&retryWrites=true`;
-    }
-
     const { default: config } = await import("./payload.config.js");
 
     payload = await getPayload({ config });
@@ -51,10 +36,6 @@ describe("Plugin tests", () => {
   afterAll(async () => {
     if (payload.db.destroy) {
       await payload.db.destroy();
-    }
-
-    if (memoryDB) {
-      await memoryDB.stop();
     }
   });
 

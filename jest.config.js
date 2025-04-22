@@ -18,7 +18,8 @@ const esModules = [
   "@payloadcms/ui",
   "@payloadcms/graphql",
   "@payloadcms/translations",
-  "@payloadcms/db-mongodb",
+  "@payloadcms/db-sqlite",
+  "@payloadcms/drizzle",
   "@payloadcms/richtext-lexical",
 ].join("|");
 

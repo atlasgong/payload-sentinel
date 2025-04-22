@@ -1,4 +1,4 @@
-import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { sqliteAdapter } from "@payloadcms/db-sqlite";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
@@ -43,8 +43,10 @@ export default buildConfig({
       },
     },
   ],
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || "",
+  db: sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URI || "",
+    },
   }),
   editor: lexicalEditor(),
   email: testEmailAdapter,
@@ -62,7 +64,7 @@ export default buildConfig({
   onInit: async (payload) => {
     await seed(payload);
   },
-  plugins: [payloadSentinel()],
+  plugins: [payloadSentinel({})],
   secret: process.env.PAYLOAD_SECRET || "test-secret_key",
   sharp,
   typescript: {
