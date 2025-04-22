@@ -28,10 +28,10 @@ export type CRUDOperations = {
 
 export type PayloadSentinelConfig = {
   /**
-   * The slug for the audit logs collection.
-   * @default 'audit-logs'
+   * The slug for the audit log collection.
+   * @default 'audit-log'
    */
-  auditLogsCollection?: string;
+  auditLogCollection?: string;
 
   /**
    * The collection slug for authentication/users.

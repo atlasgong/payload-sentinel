@@ -69,7 +69,7 @@ export interface Config {
   collections: {
     posts: Post;
     media: Media;
-    'audit-logs': AuditLog;
+    'audit-log': AuditLog;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,7 +79,7 @@ export interface Config {
   collectionsSelect: {
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    'audit-logs': AuditLogsSelect<false> | AuditLogsSelect<true>;
+    'audit-log': AuditLogSelect<false> | AuditLogSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -151,15 +151,16 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "audit-logs".
+ * via the `definition` "audit-log".
  */
 export interface AuditLog {
   id: string;
   timestamp: string;
-  user: string | User;
   operation: 'create' | 'read' | 'update' | 'delete';
   resourceType: string;
   documentId: string;
+  previousVersionId?: string | null;
+  user: string | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -196,7 +197,7 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'audit-logs';
+        relationTo: 'audit-log';
         value: string | AuditLog;
       } | null)
     | ({
@@ -273,14 +274,15 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "audit-logs_select".
+ * via the `definition` "audit-log_select".
  */
-export interface AuditLogsSelect<T extends boolean = true> {
+export interface AuditLogSelect<T extends boolean = true> {
   timestamp?: T;
-  user?: T;
   operation?: T;
   resourceType?: T;
   documentId?: T;
+  previousVersionId?: T;
+  user?: T;
   updatedAt?: T;
   createdAt?: T;
 }

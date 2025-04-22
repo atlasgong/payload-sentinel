@@ -8,7 +8,7 @@ export const defaultCRUDOperations: CRUDOperations = {
 };
 
 export const defaultConfig: Required<PayloadSentinelConfig> = {
-  auditLogsCollection: "audit-logs",
+  auditLogCollection: "audit-log",
   authCollection: "users",
   disabled: false,
   excludedCollections: [],

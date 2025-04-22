@@ -2,7 +2,7 @@ import type { JsonObject, Operation, PayloadRequest, TypeWithID, TypeWithVersion
 
 import type { PayloadSentinelConfig } from "./config.js";
 
-type LogOptions = Required<Pick<PayloadSentinelConfig, "auditLogsCollection" | "disabled" | "operations">>;
+type LogOptions = Required<Pick<PayloadSentinelConfig, "auditLogCollection" | "disabled" | "operations">>;
 
 /**
  * Logs an audit entry for a collection operation.
@@ -60,7 +60,7 @@ export async function logCollectionAudit(
   }
   try {
     await req.payload.create({
-      collection: options.auditLogsCollection,
+      collection: options.auditLogCollection,
       data: {
         documentId: doc.id,
         operation,
@@ -124,7 +124,7 @@ export async function logGlobalAudit(
   }
   try {
     await req.payload.create({
-      collection: options.auditLogsCollection,
+      collection: options.auditLogCollection,
       data: {
         documentId: globalSlug,
         operation,

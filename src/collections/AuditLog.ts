@@ -2,10 +2,13 @@ import type { CollectionConfig } from "payload";
 
 import type { PayloadSentinelConfig } from "../config.js";
 
-type AuditLogsCollectionOptions = Required<Pick<PayloadSentinelConfig, "auditLogsCollection" | "authCollection">>;
+type AuditLogCollectionOptions = Required<Pick<PayloadSentinelConfig, "auditLogCollection" | "authCollection">>;
 
-export const AuditLog = ({ auditLogsCollection, authCollection }: AuditLogsCollectionOptions): CollectionConfig => ({
-  slug: auditLogsCollection,
+export const AuditLog = ({
+  auditLogCollection: auditLogCollection,
+  authCollection,
+}: AuditLogCollectionOptions): CollectionConfig => ({
+  slug: auditLogCollection,
   access: {
     create: () => false,
     delete: () => false,

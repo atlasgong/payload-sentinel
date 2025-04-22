@@ -3,7 +3,7 @@ import type { BaseDatabaseAdapter, CollectionConfig, Config, GlobalConfig } from
 import { type HookOptions, injectAuditHooks } from "./injectHooks.js";
 
 const defaultTestOptions: HookOptions = {
-  auditLogsCollection: "audit-logs",
+  auditLogCollection: "audit-log",
   disabled: false,
   excludedCollections: [],
   excludedGlobals: [],
@@ -21,7 +21,7 @@ const mockCollection: CollectionConfig = {
 };
 
 const mockAuditLogCollection: CollectionConfig = {
-  slug: "audit-logs",
+  slug: "audit-log",
   fields: [],
 };
 
@@ -101,7 +101,7 @@ describe("injectAuditHooks", () => {
     const options = { ...defaultTestOptions };
     injectAuditHooks(mockConfig, options);
 
-    const targetCollection = mockConfig.collections?.find((c) => c.slug === "audit-logs");
+    const targetCollection = mockConfig.collections?.find((c) => c.slug === "audit-log");
     expect(targetCollection).toBeDefined();
     // check that no new hooks were added
     expect(targetCollection?.hooks?.afterChange).toBeUndefined();

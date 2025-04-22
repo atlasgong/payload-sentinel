@@ -7,7 +7,7 @@ import { logCollectionAudit, logGlobalAudit } from "./logger.js";
 export type HookOptions = Required<
   Pick<
     PayloadSentinelConfig,
-    "auditLogsCollection" | "disabled" | "excludedCollections" | "excludedGlobals" | "operations"
+    "auditLogCollection" | "disabled" | "excludedCollections" | "excludedGlobals" | "operations"
   >
 >;
 
@@ -31,7 +31,7 @@ export const injectAuditHooks = (config: Config, options: HookOptions): void => 
   // add hooks to all collections that aren't explicitly excluded
   for (const collection of config.collections) {
     // skip excluded collections and the audit log collection itself
-    if (options.excludedCollections?.includes(collection.slug) || collection.slug === options.auditLogsCollection) {
+    if (options.excludedCollections?.includes(collection.slug) || collection.slug === options.auditLogCollection) {
       continue;
     }
 

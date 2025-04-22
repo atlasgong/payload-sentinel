@@ -59,8 +59,8 @@ describe("Plugin tests", () => {
   });
 
   it("audit logs collection is defined upon instantiation", () => {
-    expect(payload.collections["audit-logs"]).toBeDefined();
-    expect(payload.collections["audit-logs"].config).toBeDefined();
-    expect(payload.collections["audit-logs"].config.slug).toBeDefined();
+    expect(payload.collections["audit-log"]).toBeDefined();
+    expect(payload.collections["audit-log"].config).toBeDefined();
+    expect(payload.collections["audit-log"].config.slug).toBeDefined();
   });
 });
