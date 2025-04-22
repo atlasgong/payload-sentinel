@@ -1,14 +1,10 @@
 import type { JsonObject, Operation, PayloadRequest, TypeWithID, TypeWithVersion } from "payload";
 
-import type { PayloadSentinelConfig } from "./config.js";
-
-type LogOptions = Required<Pick<PayloadSentinelConfig, "auditLogCollection" | "disabled" | "operations">>;
-
 /**
  * Logs an audit entry for a collection operation.
  *
- * @param {LogOptions} options - The logging options.
  * @param {Object} params - Parameters for the audit log.
+ * @param {string} params.auditLogCollection - The slug for the Audit Log collection.
  * @param {string} params.collectionSlug - The slug of the collection.
  * @param {Record<string, unknown> & TypeWithID} params.doc - The document involved in the operation.
  * @param {Operation} params.operation - The operation performed (create, update, delete, read).
@@ -19,23 +15,19 @@ type LogOptions = Required<Pick<PayloadSentinelConfig, "auditLogCollection" | "d
  * If versioning is disabled, the retrieval simply returns empty results without error.
  * Any thrown error indicates a different underlying issue.
  */
-export async function logCollectionAudit(
-  options: LogOptions,
-  {
-    collectionSlug,
-    doc,
-    operation,
-    req,
-  }: {
-    collectionSlug: string;
-    doc: Record<string, unknown> & TypeWithID;
-    operation: Operation;
-    req: PayloadRequest;
-  },
-): Promise<void> {
-  if (options.disabled || !options.operations[operation] || !req.user?.id) {
-    return;
-  }
+export async function logCollectionAudit({
+  auditLogCollection,
+  collectionSlug,
+  doc,
+  operation,
+  req,
+}: {
+  auditLogCollection: string;
+  collectionSlug: string;
+  doc: Record<string, unknown> & TypeWithID;
+  operation: Operation;
+  req: PayloadRequest;
+}): Promise<void> {
   // fetch previous version if exists / if versioning is enabled
   let previousVersion: TypeWithVersion<JsonObject & TypeWithID> | undefined;
   try {
@@ -60,7 +52,7 @@ export async function logCollectionAudit(
   }
   try {
     await req.payload.create({
-      collection: options.auditLogCollection,
+      collection: auditLogCollection,
       data: {
         documentId: doc.id,
         operation,
@@ -79,8 +71,8 @@ export async function logCollectionAudit(
 /**
  * Logs an audit entry for a global operation.
  *
- * @param {LogOptions} options - The logging options.
  * @param {Object} params - Parameters for the audit log.
+ * @param {string} params.auditLogCollection - The slug for the Audit Log collection.
  * @param {string} params.globalSlug - The slug of the global.
  * @param {Operation} params.operation - The operation performed (update, read).
  * @param {PayloadRequest} params.req - The Payload request context.
@@ -90,21 +82,17 @@ export async function logCollectionAudit(
  * If versioning is disabled, the retrieval simply returns empty results without error.
  * Any thrown error indicates a different underlying issue.
  */
-export async function logGlobalAudit(
-  options: LogOptions,
-  {
-    globalSlug,
-    operation,
-    req,
-  }: {
-    globalSlug: string;
-    operation: Operation;
-    req: PayloadRequest;
-  },
-): Promise<void> {
-  if (options.disabled || !options.operations[operation] || !req.user?.id) {
-    return;
-  }
+export async function logGlobalAudit({
+  auditLogCollection,
+  globalSlug,
+  operation,
+  req,
+}: {
+  auditLogCollection: string;
+  globalSlug: string;
+  operation: Operation;
+  req: PayloadRequest;
+}): Promise<void> {
   // fetch previous version if exists / if versioning is enabled
   let previousVersion: TypeWithVersion<JsonObject> | undefined;
   try {
@@ -124,7 +112,7 @@ export async function logGlobalAudit(
   }
   try {
     await req.payload.create({
-      collection: options.auditLogCollection,
+      collection: auditLogCollection,
       data: {
         documentId: globalSlug,
         operation,
