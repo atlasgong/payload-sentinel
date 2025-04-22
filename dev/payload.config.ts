@@ -45,7 +45,7 @@ export default buildConfig({
   ],
   db: sqliteAdapter({
     client: {
-      url: process.env.DATABASE_URL || "file:database.db",
+      url: process.env.DATABASE_URL || `file:${path.resolve(dirname, 'database.db')}`,
     },
   }),
   editor: lexicalEditor(),
