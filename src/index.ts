@@ -28,7 +28,7 @@ export const payloadSentinel =
 
     // create and inject the audit logs collection
     const auditLogCollection = AuditLog({
-      auditLogsCollection: options.auditLogsCollection,
+      auditLogCollection: options.auditLogCollection,
       authCollection: options.authCollection,
     });
     config.collections.push(auditLogCollection);
