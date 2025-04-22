@@ -2,7 +2,7 @@
 
 # database
 /database.db
-
+/dev/database.db
 # dependencies
 /node_modules
 /.pnp
