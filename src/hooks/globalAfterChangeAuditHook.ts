@@ -10,12 +10,14 @@ export const globalAfterChangeAuditHook = (options: HookOptions): GlobalAfterCha
       return args.doc;
     }
 
-    await logGlobalAudit({
-      auditLogCollection: options.auditLogCollection,
-      globalSlug: args.global.slug,
-      operation: "update",
-      req: args.req,
-    });
+    try {
+      await logGlobalAudit(args, {
+        auditLogCollection: options.auditLogCollection,
+        operation: "update",
+      });
+    } catch (error) {
+      args.req.payload.logger.error(`Error on globalAfterChangeAuditHook: ${error}`);
+    }
 
     return args.doc;
   };

@@ -10,13 +10,14 @@ export const collectionAfterReadAuditHook = (options: HookOptions): CollectionAf
       return args.doc;
     }
 
-    await logCollectionAudit({
-      auditLogCollection: options.auditLogCollection,
-      collectionSlug: args.collection.slug,
-      doc: args.doc,
-      operation: "read",
-      req: args.req,
-    });
+    try {
+      await logCollectionAudit(args, {
+        auditLogCollection: options.auditLogCollection,
+        operation: "read",
+      });
+    } catch (error) {
+      args.req.payload.logger.error(`Error on collectionAfterReadAuditHook: ${error}`);
+    }
 
     return args.doc;
   };

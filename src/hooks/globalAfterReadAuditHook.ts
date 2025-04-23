@@ -10,12 +10,14 @@ export const globalAfterReadAuditHook = (options: HookOptions): GlobalAfterReadH
       return args.doc;
     }
 
-    await logGlobalAudit({
-      auditLogCollection: options.auditLogCollection,
-      globalSlug: args.global.slug,
-      operation: "read",
-      req: args.req,
-    });
+    try {
+      await logGlobalAudit(args, {
+        auditLogCollection: options.auditLogCollection,
+        operation: "read",
+      });
+    } catch (error) {
+      args.req.payload.logger.error(`Error on globalAfterReadAuditHook: ${error}`);
+    }
 
     return args.doc;
   };

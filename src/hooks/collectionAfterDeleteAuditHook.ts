@@ -10,13 +10,14 @@ export const collectionAfterDeleteAuditHook = (options: HookOptions): Collection
       return args.doc;
     }
 
-    await logCollectionAudit({
-      auditLogCollection: options.auditLogCollection,
-      collectionSlug: args.collection.slug,
-      doc: args.doc,
-      operation: "delete",
-      req: args.req,
-    });
+    try {
+      await logCollectionAudit(args, {
+        auditLogCollection: options.auditLogCollection,
+        operation: "delete",
+      });
+    } catch (error) {
+      args.req.payload.logger.error(`Error on collectionAfterDeleteAuditHook: ${error}`);
+    }
 
     return args.doc;
   };
