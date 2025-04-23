@@ -15,7 +15,7 @@ export const AuditLog = ({
     update: () => false,
   },
   admin: {
-    defaultColumns: ["timestamp", "operation", "resourceType", "documentId", "previousVersionId", "user"],
+    defaultColumns: ["timestamp", "operation", "resourceType", "previousVersionId", "user"],
     disableCopyToLocale: true,
     useAsTitle: "timestamp",
   },
@@ -37,20 +37,21 @@ export const AuditLog = ({
       required: true,
     },
     {
-      name: "resourceType",
+      name: "resourceURL",
       type: "text",
-      admin: { readOnly: true },
+      admin: {
+        components: {
+          Cell: "payload-sentinel/rsc#ResourceURLCell",
+        },
+        readOnly: true,
+      },
+      label: "Resource URL",
       required: true,
     },
     {
       name: "documentId",
       type: "text",
-      admin: {
-        components: {
-          Cell: "payload-sentinel/rsc#DocumentIDCell",
-        },
-        readOnly: true,
-      },
+      admin: { readOnly: true },
       label: "Document ID",
       required: true,
     },
