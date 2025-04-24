@@ -80,7 +80,7 @@ export async function logCollectionAudit(
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       args.req.payload.logger.error(
-        "System error: unable to retrieve versions. Operation will still be loggeed. Details: " + message,
+        "System error: unable to retrieve versions. Operation will still be logged. Details: " + message,
       );
     }
   }
