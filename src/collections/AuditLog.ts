@@ -24,7 +24,7 @@ export const AuditLog = ({
       name: "timestamp",
       type: "date",
       admin: {
-        date: { displayFormat: "yyyy-MM-dd HH:mm:ss.SSS" },
+        date: { displayFormat: "yyyy-MM-dd HH:mm:ss" },
         readOnly: true,
       },
       required: true,
