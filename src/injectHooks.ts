@@ -1,8 +1,12 @@
-import type { Config, TypeWithID } from "payload";
+import type { Config } from "payload";
 
 import type { PayloadSentinelConfig } from "./config.js";
 
-import { logCollectionAudit, logGlobalAudit } from "./logger.js";
+import { collectionAfterChangeAuditHook } from "./hooks/collectionAfterChangeAuditHook.js";
+import { collectionAfterDeleteAuditHook } from "./hooks/collectionAfterDeleteAuditHook.js";
+import { collectionAfterReadAuditHook } from "./hooks/collectionAfterReadAuditHook.js";
+import { globalAfterChangeAuditHook } from "./hooks/globalAfterChangeAuditHook.js";
+import { globalAfterReadAuditHook } from "./hooks/globalAfterReadAuditHook.js";
 
 export type HookOptions = Required<
   Pick<
@@ -37,61 +41,9 @@ export const injectAuditHooks = (config: Config, options: HookOptions): void => 
 
     collection.hooks = {
       ...collection.hooks,
-      afterChange: [
-        async ({ doc, operation, req }) => {
-          // ensure doc has a valid ID before passing
-          if (doc && typeof doc === "object" && "id" in doc && typeof doc.id === "string") {
-            await logCollectionAudit(options, {
-              collectionSlug: collection.slug,
-              doc: doc as Record<string, unknown> & TypeWithID, // cast after check
-              operation,
-              req,
-            });
-          } else {
-            throw new Error(
-              `Audit log creation failed for collection ${collection.slug} (afterChange): Document or document ID is missing or invalid.`,
-            );
-          }
-        },
-        ...(collection.hooks?.afterChange || []),
-      ],
-      afterDelete: [
-        async ({ doc, req }) => {
-          // ensure doc has a valid ID before passing
-          if (doc && typeof doc === "object" && "id" in doc && typeof doc.id === "string") {
-            await logCollectionAudit(options, {
-              collectionSlug: collection.slug,
-              doc: doc as Record<string, unknown> & TypeWithID, // cast after check
-              operation: "delete",
-              req,
-            });
-          } else {
-            throw new Error(
-              `Audit log creation failed for collection ${collection.slug} (afterDelete): Document or document ID is missing or invalid.`,
-            );
-          }
-        },
-        ...(collection.hooks?.afterDelete || []),
-      ],
-      afterRead: [
-        async ({ doc, req }) => {
-          // ensure doc has a valid ID before passing
-          if (doc && typeof doc === "object" && "id" in doc && typeof doc.id === "string") {
-            await logCollectionAudit(options, {
-              collectionSlug: collection.slug,
-              doc: doc as Record<string, unknown> & TypeWithID, // cast after check
-              operation: "read",
-              req,
-            });
-          } else {
-            // for afterRead, maybe skipping is better than throwing?
-            throw new Error(
-              `Audit log creation failed for collection ${collection.slug} (afterRead): Document or document ID is missing or invalid.`,
-            );
-          }
-        },
-        ...(collection.hooks?.afterRead || []),
-      ],
+      afterChange: [...(collection.hooks?.afterChange || []), collectionAfterChangeAuditHook(options)],
+      afterDelete: [...(collection.hooks?.afterDelete || []), collectionAfterDeleteAuditHook(options)],
+      afterRead: [...(collection.hooks?.afterRead || []), collectionAfterReadAuditHook(options)],
     };
   }
 
@@ -103,27 +55,8 @@ export const injectAuditHooks = (config: Config, options: HookOptions): void => 
 
     global.hooks = {
       ...global.hooks,
-      afterChange: [
-        async ({ req }) => {
-          // globals only trigger 'update' in afterChange
-          await logGlobalAudit(options, {
-            globalSlug: global.slug,
-            operation: "update",
-            req,
-          });
-        },
-        ...(global.hooks?.afterChange || []),
-      ],
-      afterRead: [
-        async ({ req }) => {
-          await logGlobalAudit(options, {
-            globalSlug: global.slug,
-            operation: "read",
-            req,
-          });
-        },
-        ...(global.hooks?.afterRead || []),
-      ],
+      afterChange: [...(global.hooks?.afterChange || []), globalAfterChangeAuditHook(options)],
+      afterRead: [...(global.hooks?.afterRead || []), globalAfterReadAuditHook(options)],
     };
   }
 };
