@@ -15,7 +15,7 @@ export const AuditLog = ({
     update: () => false,
   },
   admin: {
-    defaultColumns: ["timestamp", "operation", "resourceType", "previousVersionId", "user"],
+    defaultColumns: ["timestamp", "operation", "resourceURL", "previousVersionId", "user"],
     disableCopyToLocale: true,
     useAsTitle: "timestamp",
   },
