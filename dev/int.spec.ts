@@ -39,22 +39,10 @@ describe("Plugin tests with default config", () => {
     restClient = new NextRESTClient(payload.config);
   });
 
-  afterAll(() => {
-    return new Promise<void>((done) => {
-      if (payload?.db?.destroy) {
-        payload.db
-          .destroy()
-          .then(() => {
-            done();
-          })
-          .catch((error) => {
-            console.error("Error during cleanup:", error);
-            done(error);
-          });
-      } else {
-        done();
-      }
-    });
+  afterAll(async () => {
+    if (payload?.db?.destroy) {
+      await payload.db.destroy();
+    }
   });
 
   it("plugin is defined upon instantiation", async () => {
