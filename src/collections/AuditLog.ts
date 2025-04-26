@@ -32,7 +32,12 @@ export const AuditLog = ({
     {
       name: "operation",
       type: "select",
-      admin: { readOnly: true },
+      admin: {
+        components: {
+          Cell: "payload-sentinel/rsc#OperationCell",
+        },
+        readOnly: true,
+      },
       options: ["create", "read", "update", "delete"],
       required: true,
     },
