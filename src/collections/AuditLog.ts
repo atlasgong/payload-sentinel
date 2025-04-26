@@ -72,7 +72,7 @@ export const AuditLog = ({
       type: "relationship",
       admin: { readOnly: true },
       relationTo: authCollection,
-      required: true,
+      required: false,
     },
   ],
   labels: {
