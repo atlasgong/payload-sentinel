@@ -1,3 +1,5 @@
+#!/bin/sh
+
 pnpm dev:generate-types
 git add dev/payload-types.ts
 pnpm test
