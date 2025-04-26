@@ -1,0 +1,39 @@
+.create {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: #00e135b0;
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.update {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: #ea841db0;
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.delete {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: #c60000b0;
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.read {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: hsla(211, 95%, 69%, 0.69);
+  text-transform: capitalize;
+  border-radius: 4px;
+}
