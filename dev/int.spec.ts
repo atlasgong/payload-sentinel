@@ -9,10 +9,12 @@ import type { Collection, Payload } from "payload";
 import dotenv from "dotenv";
 import path from "path";
 import { getPayload } from "payload";
+import { sl } from "payload/i18n/sl";
 import { payloadSentinel } from "payload-sentinel";
 import { fileURLToPath } from "url";
 
-import { devUser } from "./helpers/credentials.js";
+import { getPostFixture } from "./__fixtures__/post.js";
+import { getUserFixture } from "./__fixtures__/user.js";
 import { NextRESTClient } from "./helpers/NextRESTClient.js";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -57,27 +59,16 @@ describe("Plugin tests with default config", () => {
     expect(payload.collections["audit-log"].config.slug).toBe("audit-log");
   });
 
-  it("create collection operation works", async () => {
+  it("create collection operation is logged", async () => {
     try {
       // get user to associate with the audit log
-      const userResult = await payload.find({
-        collection: "users",
-        where: {
-          email: {
-            equals: devUser.email,
-          },
-        },
-      });
-
-      // ensure we found a user
-      expect(userResult.docs.length).toBeGreaterThan(0);
-      const user = userResult.docs[0];
+      const user = await getUserFixture(payload);
 
       // create arbitrary post
       const createdDoc = await payload.create({
         collection: "posts",
         data: {
-          example: "test",
+          example: "jvgkjhsagdfds",
         },
         overrideAccess: false,
         user,
@@ -93,15 +84,139 @@ describe("Plugin tests with default config", () => {
         sort: "-createdAt",
       });
 
-      expect(logs.totalDocs).toBe(1);
+      expect(logs.totalDocs).toBeGreaterThan(0);
 
       const log = logs.docs[0];
       expect(log.documentId).toStrictEqual(String(createdDoc.id));
+      expect(log.operation).toBe("create");
     } finally {
       // wait for operations to complete
       await new Promise((resolve) => process.nextTick(resolve));
     }
   });
+
+  it("update collection operation is logged", async () => {
+    try {
+      // get user to associate with the audit log
+      const user = await getUserFixture(payload);
+
+      // get arbitrary post
+      const post = await getPostFixture(payload);
+
+      await payload.update({
+        id: post.id,
+        collection: "posts",
+        data: {
+          example: "TEST",
+        },
+        user,
+      });
+
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+
+      // audit log should've been created
+      const logs = await payload.find({
+        collection: "audit-log",
+        limit: 1,
+        sort: "-createdAt",
+      });
+
+      expect(logs.totalDocs).toBeGreaterThan(0);
+
+      const log = logs.docs[0];
+      expect(log.documentId).toStrictEqual(String(post.id));
+      expect(log.operation).toBe("update");
+    } finally {
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+    }
+  });
+
+  it("delete collection operation is logged", async () => {
+    try {
+      // get user to associate with the audit log
+      const user = await getUserFixture(payload);
+
+      // create arbitrary post
+      const post = await getPostFixture(payload);
+
+      // delete the post
+      await payload.delete({
+        id: post.id,
+        collection: "posts",
+        user,
+      });
+
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+
+      // audit log should've been created
+      const logs = await payload.find({
+        collection: "audit-log",
+        limit: 1,
+        sort: "-createdAt",
+      });
+
+      expect(logs.totalDocs).toBeGreaterThan(0);
+
+      const log = logs.docs[0];
+      expect(log.documentId).toStrictEqual(String(post.id));
+      expect(log.operation).toBe("delete");
+    } finally {
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+    }
+  });
+
+  it.todo("read collection operaton is logged");
+
+  it("update global operation is logged", async () => {
+    try {
+      // get user to associate with the audit log
+      const user = await getUserFixture(payload);
+
+      // update the existing 'settings' global
+      await payload.updateGlobal({
+        slug: "settings",
+        data: {
+          example: {
+            root: {
+              type: "root",
+              children: [
+                {
+                  type: "paragraph",
+                  children: [{ text: "woooooo" }],
+                },
+              ],
+            },
+          },
+        },
+        user,
+      });
+
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+
+      // audit log should've been created
+      const logs = await payload.find({
+        collection: "audit-log",
+        limit: 1,
+        sort: "-createdAt",
+      });
+
+      expect(logs.totalDocs).toBeGreaterThan(0);
+
+      const log = logs.docs[0];
+      expect(log.documentId).toStrictEqual(String("settings"));
+      expect(log.operation).toBe("update");
+    } finally {
+      // wait for operations to complete
+      await new Promise((resolve) => process.nextTick(resolve));
+    }
+  });
+
+  it.todo("read global operation is logged");
 });
 
 // describe("Plugin tests with custom config", () => {
