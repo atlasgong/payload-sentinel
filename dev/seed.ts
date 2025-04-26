@@ -18,22 +18,4 @@ export const seed = async (payload: Payload) => {
       data: devUser,
     });
   }
-
-  const matchingPosts = await payload.find({
-    collection: "posts",
-    where: {
-      example: {
-        equals: "test",
-      },
-    },
-  });
-
-  if (matchingPosts.totalDocs === 0) {
-    await payload.create({
-      collection: "posts",
-      data: {
-        example: "test",
-      },
-    });
-  }
 };
