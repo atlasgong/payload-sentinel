@@ -45,7 +45,7 @@ export default buildConfig({
   ],
   db: sqliteAdapter({
     client: {
-      url: process.env.DATABASE_URL || `file:${path.resolve(dirname, 'database.db')}`,
+      url: process.env.DATABASE_URL || `file:${path.resolve(dirname, "database.db")}`,
     },
   }),
   editor: lexicalEditor(),
@@ -68,6 +68,7 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || "test-secret_key",
   sharp,
   typescript: {
+    autoGenerate: false,
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
 });

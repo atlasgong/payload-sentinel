@@ -86,7 +86,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   globals: {
     settings: Setting;
@@ -126,7 +126,7 @@ export interface UserAuthOperations {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   example?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -136,7 +136,7 @@ export interface Post {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -154,13 +154,13 @@ export interface Media {
  * via the `definition` "audit-log".
  */
 export interface AuditLog {
-  id: string;
+  id: number;
   timestamp: string;
   operation: 'create' | 'read' | 'update' | 'delete';
-  resourceType: string;
+  resourceURL: string;
   documentId: string;
   previousVersionId?: string | null;
-  user: string | User;
+  user?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
 }
@@ -169,7 +169,7 @@ export interface AuditLog {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -186,28 +186,28 @@ export interface User {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'audit-log';
-        value: string | AuditLog;
+        value: number | AuditLog;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -217,10 +217,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -240,7 +240,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -279,7 +279,7 @@ export interface MediaSelect<T extends boolean = true> {
 export interface AuditLogSelect<T extends boolean = true> {
   timestamp?: T;
   operation?: T;
-  resourceType?: T;
+  resourceURL?: T;
   documentId?: T;
   previousVersionId?: T;
   user?: T;
@@ -338,7 +338,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "settings".
  */
 export interface Setting {
-  id: string;
+  id: number;
   example?: {
     root: {
       type: string;
