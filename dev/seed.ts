@@ -3,7 +3,7 @@ import type { Payload } from "payload";
 import { devUser } from "./helpers/credentials.js";
 
 export const seed = async (payload: Payload) => {
-  const { totalDocs } = await payload.count({
+  const matchingUsers = await payload.find({
     collection: "users",
     where: {
       email: {
@@ -12,17 +12,28 @@ export const seed = async (payload: Payload) => {
     },
   });
 
-  if (!totalDocs) {
+  if (matchingUsers.totalDocs === 0) {
     await payload.create({
       collection: "users",
       data: devUser,
     });
   }
 
-  await payload.create({
+  const matchingPosts = await payload.find({
     collection: "posts",
-    data: {
-      example: "test",
+    where: {
+      example: {
+        equals: "test",
+      },
     },
   });
+
+  if (matchingPosts.totalDocs === 0) {
+    await payload.create({
+      collection: "posts",
+      data: {
+        example: "test",
+      },
+    });
+  }
 };
