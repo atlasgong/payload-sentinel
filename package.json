@@ -52,7 +52,8 @@
     "prepublishOnly": "pnpm clean && pnpm build",
     "test": "pnpm test:unit && pnpm test:int",
     "test:unit": "jest src/",
-    "test:int": "jest dev/"
+    "test:int": "jest dev/",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
