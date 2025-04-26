@@ -9,7 +9,6 @@ import type { Collection, Payload } from "payload";
 import dotenv from "dotenv";
 import path from "path";
 import { getPayload } from "payload";
-import { sl } from "payload/i18n/sl";
 import { payloadSentinel } from "payload-sentinel";
 import { fileURLToPath } from "url";
 
