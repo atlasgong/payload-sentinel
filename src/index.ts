@@ -36,5 +36,14 @@ export const payloadSentinel =
     // inject audit hooks into collections and globals
     injectAuditHooks(config, options);
 
+    // warn that the READ hook is under development
+    if (options.operations.read) {
+      console.warn(
+        "You have enabled logging for Payload Sentinel's read operation.\n" +
+          "This feature is still under heavy development and you should expect to encounter many bugs.\n" +
+          "Report bugs here: https://github.com/atlasgong/payload-sentinel/issues\n",
+      );
+    }
+
     return config;
   };
