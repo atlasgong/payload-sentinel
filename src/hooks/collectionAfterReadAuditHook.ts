@@ -6,7 +6,7 @@ import { logCollectionAudit } from "../logger.js";
 
 export const collectionAfterReadAuditHook = (options: HookOptions): CollectionAfterReadHook => {
   return async (args) => {
-    if (!options.operations["read"]) {
+    if (!options.operations["read"] || !args.doc.id || args.findMany) {
       return args.doc;
     }
 

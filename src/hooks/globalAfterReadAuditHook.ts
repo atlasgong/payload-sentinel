@@ -6,7 +6,7 @@ import { logGlobalAudit } from "../logger.js";
 
 export const globalAfterReadAuditHook = (options: HookOptions): GlobalAfterReadHook => {
   return async (args) => {
-    if (!options.operations["read"]) {
+    if (!options.operations["read"] || !args.doc.id || args.findMany) {
       return args.doc;
     }
 
