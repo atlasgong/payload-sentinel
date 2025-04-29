@@ -79,9 +79,7 @@ export async function logCollectionAudit(
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      args.req.payload.logger.error(
-        "System error: unable to retrieve versions. Operation will still be logged. Details: " + message,
-      );
+      args.req.payload.logger.error("Unable to retrieve versions. Operation may still be logged. Details: " + message);
     }
   }
 
@@ -130,9 +128,7 @@ export async function logGlobalAudit(
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      args.req.payload.logger.error(
-        "System error: unable to retrieve versions. Operation will still be logged. Details: " + message,
-      );
+      args.req.payload.logger.error("Unable to retrieve versions. Operation may still be logged. Details: " + message);
     }
   }
   try {
