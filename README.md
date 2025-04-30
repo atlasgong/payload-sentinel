@@ -1,4 +1,5 @@
-> [!WARNING] > **Under development.** Use at your own risk. Please report bugs [here](https://github.com/atlasgong/payload-sentinel/issues).
+> [!WARNING]
+> **Under development.** Use at your own risk. Please report bugs [here](https://github.com/atlasgong/payload-sentinel/issues).
 
 # Payload Sentinel (A PayloadCMS Plugin)
 
