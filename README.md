@@ -23,7 +23,7 @@ pnpm add payload-sentinel
 
 Then add the plugin to your `payload.config.ts`:
 ```
-import { payloadSentinel } from "payloadSentinel";
+import { payloadSentinel } from "payload-sentinel";
 
 export default buildConfig({
   plugins: [
