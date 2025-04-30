@@ -59,6 +59,7 @@ jobs:
         run: pnpm test:unit
 
   int_tests:
+    needs: build
     timeout-minutes: 5
     runs-on: ubuntu-22.04
     steps:
@@ -77,6 +78,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Build plugin
+        run: pnpm build
 
       - name: Run integration tests
         run: pnpm test:int
