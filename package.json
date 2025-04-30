@@ -1,7 +1,7 @@
 {
   "name": "payload-sentinel",
   "version": "0.1.0",
-  "description": "Audit logging for Payload CMS.",
+  "description": "Payload Sentinel is a lightweight, opinionated audit logger for Payload CMS.",
   "author": {
     "name": "Atlas Gong",
     "email": "dev@atlasgong.com",
