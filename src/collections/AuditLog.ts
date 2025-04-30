@@ -17,6 +17,7 @@ export const AuditLog = ({
   admin: {
     defaultColumns: ["timestamp", "operation", "resourceURL", "previousVersionId", "user"],
     disableCopyToLocale: true,
+    group: "Payload Sentinel",
     useAsTitle: "timestamp",
   },
   fields: [
