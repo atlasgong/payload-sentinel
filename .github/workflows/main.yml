@@ -31,9 +31,15 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
       - name: Build plugin
         run: pnpm build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
 
   unit_tests:
     timeout-minutes: 5
@@ -79,8 +85,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build plugin
-        run: pnpm build
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
 
       - name: Run integration tests
         run: pnpm test:int
+
+      - name: Clean up build artifact
+        uses: geekyeggo/delete-artifact@e46cfb9575865f907c2beb2e4170b5f4c7d77c52
+        with:
+          name: dist
+          failOnError: false
