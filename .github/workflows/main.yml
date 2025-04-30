@@ -6,6 +6,9 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+
 concurrency:
   # <workflow_name>-<branch_name>-<true || commit_sha if branch is protected>
   group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref_protected && github.sha || ''}}
