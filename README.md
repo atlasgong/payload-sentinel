@@ -56,6 +56,7 @@ Payload Sentinel works without any configuration. If you want to customize its b
 - [ ] I18n support
 - [ ] Logging console (API) operations
 - [ ] Seamless native integration with version diffs
+- [ ] Tamper-evident audit logs using cryptographic hash chaining
 
 ## Issues & Feature Requests
 
