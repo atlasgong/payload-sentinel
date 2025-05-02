@@ -15,21 +15,12 @@ export const AuditLog = ({
     update: () => false,
   },
   admin: {
-    defaultColumns: ["timestamp", "operation", "resourceURL", "previousVersionId", "user"],
+    defaultColumns: ["createdAt", "operation", "resourceURL", "previousVersionId", "user"],
     disableCopyToLocale: true,
     group: "Payload Sentinel",
-    useAsTitle: "timestamp",
+    useAsTitle: "createdAt",
   },
   fields: [
-    {
-      name: "timestamp",
-      type: "date",
-      admin: {
-        date: { displayFormat: "yyyy-MM-dd HH:mm:ss" },
-        readOnly: true,
-      },
-      required: true,
-    },
     {
       name: "operation",
       type: "select",
