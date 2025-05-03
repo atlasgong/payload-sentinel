@@ -7,8 +7,8 @@ Payload Sentinel is a lightweight, opinionated audit logger for Payload CMS. It 
 
 Say goodbye to mystery edits forever.
 
-- Works right out of the box — zero configuration is needed.
-- Minimal and self-contained — no external dependencies.
+- Works right out of the box — no configuration is needed.
+- Minimal and self-contained — zero external dependencies.
 - Natively integrates with Payload's versioning support.
 
 ## Installation
