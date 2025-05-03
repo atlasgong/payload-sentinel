@@ -2,11 +2,14 @@ import type { CollectionConfig } from "payload";
 
 import type { PayloadSentinelConfig } from "../config.js";
 
-type AuditLogCollectionOptions = Required<Pick<PayloadSentinelConfig, "auditLogCollection" | "authCollection">>;
+type AuditLogCollectionOptions = Required<
+  Pick<PayloadSentinelConfig, "auditLogCollection" | "authCollection" | "dateFormat">
+>;
 
 export const AuditLog = ({
-  auditLogCollection: auditLogCollection,
+  auditLogCollection,
   authCollection,
+  dateFormat,
 }: AuditLogCollectionOptions): CollectionConfig => ({
   slug: auditLogCollection,
   access: {
@@ -21,6 +24,15 @@ export const AuditLog = ({
     useAsTitle: "createdAt",
   },
   fields: [
+    {
+      name: "createdAt",
+      type: "date",
+      admin: {
+        date: { displayFormat: dateFormat },
+        readOnly: true,
+      },
+      required: true,
+    },
     {
       name: "operation",
       type: "select",
@@ -37,9 +49,7 @@ export const AuditLog = ({
       name: "resourceURL",
       type: "text",
       admin: {
-        components: {
-          Cell: "payload-sentinel/rsc#ResourceURLCell",
-        },
+        components: { Cell: "payload-sentinel/rsc#ResourceURLCell" },
         readOnly: true,
       },
       label: "Resource URL",
@@ -56,9 +66,7 @@ export const AuditLog = ({
       name: "previousVersionId",
       type: "text",
       admin: {
-        components: {
-          Cell: "payload-sentinel/rsc#PreviousVersionIDCell",
-        },
+        components: { Cell: "payload-sentinel/rsc#PreviousVersionIDCell" },
         readOnly: true,
       },
       label: "Previous Version ID",
