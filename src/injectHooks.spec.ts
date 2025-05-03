@@ -1,5 +1,7 @@
 import type { BaseDatabaseAdapter, CollectionConfig, Config, GlobalConfig } from "payload";
 
+import { beforeEach, describe, expect, it } from "vitest";
+
 import { type HookOptions, injectAuditHooks } from "./injectHooks.js";
 
 const defaultTestOptions: HookOptions = {

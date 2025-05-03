@@ -4,13 +4,13 @@
  * Yet they still can test the Local API and custom endpoints using NextRESTClient helper.
  */
 
-import type { Collection, Payload } from "payload";
+import type { Payload } from "payload";
 
 import dotenv from "dotenv";
 import path from "path";
 import { getPayload } from "payload";
-import { payloadSentinel } from "payload-sentinel";
 import { fileURLToPath } from "url";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 import { getPostFixture } from "./__fixtures__/post.js";
 import { getUserFixture } from "./__fixtures__/user.js";
@@ -217,39 +217,3 @@ describe("Plugin tests with default config", () => {
 
   it.todo("read global operation is logged");
 });
-
-// describe("Plugin tests with custom config", () => {
-//   let payload: Payload;
-//   let restClient: NextRESTClient;
-
-//   // Combine the two beforeAll hooks into one to avoid duplicate hooks error
-//   beforeAll(async () => {
-//     // eslint-disable-next-line @typescript-eslint/no-require-imports
-//     const payloadSentinelModule = require("payload-sentinel");
-//     if (payloadSentinelModule.payloadSentinel.mockRestore) {
-//       payloadSentinelModule.payloadSentinel.mockRestore();
-//     }
-//     jest.spyOn(payloadSentinelModule, "payloadSentinel").mockImplementation(() => ({
-//       name: "payload-sentinel",
-//       auditLogCollection: "test",
-//     }));
-
-//     const { default: config } = await import("./payload.config.js");
-//     payload = await getPayload({ config });
-//     restClient = new NextRESTClient(payload.config);
-//   });
-
-//   afterAll(async () => {
-//     if (payload?.db?.destroy) {
-//       await payload.db.destroy();
-//     }
-//   });
-
-//   it("uses custom audit log collection name", () => {
-//     const collections = payload.collections as Record<string, Collection>;
-//     const collection = collections["test"];
-//     expect(collection).toBeDefined();
-//     expect(collection.config).toBeDefined();
-//     expect(collection.config.slug).toBe("test");
-//   });
-// });
