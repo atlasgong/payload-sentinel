@@ -1,4 +1,4 @@
-import type { CollectionSlug, GlobalSlug } from "payload";
+import type { Access, CollectionSlug, GlobalSlug } from "payload";
 
 export type CRUDOperations = {
   /**
@@ -27,6 +27,13 @@ export type CRUDOperations = {
 };
 
 export type PayloadSentinelConfig = {
+  /**
+   * Read access for the audit log.
+   * Note: create, update, and delete access cannot be configured and are all denied.
+   * @default '({ req: { user } }) => { return Boolean(user)}'
+   */
+  access?: Access;
+
   /**
    * The slug for the audit log collection.
    * @default 'audit-log'

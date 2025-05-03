@@ -8,6 +8,9 @@ export const defaultCRUDOperations: CRUDOperations = {
 };
 
 export const defaultConfig: Required<PayloadSentinelConfig> = {
+  access: ({ req: { user } }) => {
+    return Boolean(user);
+  },
   auditLogCollection: "audit-log",
   authCollection: "users",
   dateFormat: "EEE, dd MMM yyyy HH:mm:ss",
