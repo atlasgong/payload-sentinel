@@ -2,4 +2,6 @@
 set -e
 pnpm dev:generate-types
 git add dev/payload-types.ts
+pnpm dev:generate-importmap
+git add dev/app/\(payload\)/admin/importMap.js
 pnpm test
