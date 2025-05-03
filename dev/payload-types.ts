@@ -155,14 +155,13 @@ export interface Media {
  */
 export interface AuditLog {
   id: number;
-  timestamp: string;
+  createdAt: string;
   operation: 'create' | 'read' | 'update' | 'delete';
   resourceURL: string;
   documentId: string;
   previousVersionId?: string | null;
   user?: (number | null) | User;
   updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -277,14 +276,13 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "audit-log_select".
  */
 export interface AuditLogSelect<T extends boolean = true> {
-  timestamp?: T;
+  createdAt?: T;
   operation?: T;
   resourceURL?: T;
   documentId?: T;
   previousVersionId?: T;
   user?: T;
   updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
