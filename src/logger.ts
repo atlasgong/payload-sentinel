@@ -87,6 +87,7 @@ export async function logCollectionAudit(
     await args.req.payload.create({
       collection: params.auditLogCollection,
       data: {
+        createdAt: new Date(),
         documentId: String(args.doc.id),
         operation: params.operation,
         previousVersionId: previousVersion?.id,
@@ -135,6 +136,7 @@ export async function logGlobalAudit(
     await args.req.payload.create({
       collection: params.auditLogCollection,
       data: {
+        createdAt: new Date(),
         documentId: args.global.slug,
         operation: params.operation,
         previousVersionId: previousVersion?.id,

@@ -41,6 +41,12 @@ export type PayloadSentinelConfig = {
   authCollection?: CollectionSlug;
 
   /**
+   * Represents the date format in which audit log timestamps should be displayed.
+   * Accepts any valid unicode date format: https://date-fns.org/v4.1.0/docs/format
+   */
+  dateFormat?: string;
+
+  /**
    * Whether to disable the audit logging functionality.
    * @default false
    */

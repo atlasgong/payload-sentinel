@@ -10,6 +10,7 @@ export const defaultCRUDOperations: CRUDOperations = {
 export const defaultConfig: Required<PayloadSentinelConfig> = {
   auditLogCollection: "audit-log",
   authCollection: "users",
+  dateFormat: "EEE, dd MMM yyyy HH:mm:ss",
   disabled: false,
   excludedCollections: [],
   excludedGlobals: [],
