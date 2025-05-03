@@ -1,6 +1,15 @@
 {
-  "extends": "../tsconfig.json",
-  "exclude": [],
+  "extends": "../src/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "noEmit": true,
+    "paths": {
+      "@payload-config": ["./payload.config.ts"],
+      "payload-sentinel": ["../src/index.ts"],
+      "payload-sentinel/client": ["../src/exports/client.ts"],
+      "payload-sentinel/rsc": ["../src/exports/rsc.ts"]
+    }
+  },
   "include": [
     "**/*.js",
     "**/*.jsx",
@@ -12,16 +21,5 @@
     "../src/**/*.tsx",
     "next.config.mjs",
     ".next/types/**/*.ts"
-  ],
-  "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@payload-config": ["./payload.config.ts"],
-      "payload-sentinel": ["../src/index.ts"],
-      "payload-sentinel/client": ["../src/exports/client.ts"],
-      "payload-sentinel/rsc": ["../src/exports/rsc.ts"]
-    },
-    "noEmit": true,
-    "emitDeclarationOnly": false
-  }
+  ]
 }
