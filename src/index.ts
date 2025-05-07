@@ -28,6 +28,7 @@ export const payloadSentinel =
 
     // create and inject the audit logs collection
     const auditLogCollection = AuditLog({
+      access: options.access,
       auditLogCollection: options.auditLogCollection,
       authCollection: options.authCollection,
       dateFormat: options.dateFormat,

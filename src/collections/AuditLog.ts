@@ -3,10 +3,11 @@ import type { CollectionConfig } from "payload";
 import type { PayloadSentinelConfig } from "../config.js";
 
 type AuditLogCollectionOptions = Required<
-  Pick<PayloadSentinelConfig, "auditLogCollection" | "authCollection" | "dateFormat">
+  Pick<PayloadSentinelConfig, "access" | "auditLogCollection" | "authCollection" | "dateFormat">
 >;
 
 export const AuditLog = ({
+  access,
   auditLogCollection,
   authCollection,
   dateFormat,
@@ -15,6 +16,7 @@ export const AuditLog = ({
   access: {
     create: () => false,
     delete: () => false,
+    read: access,
     update: () => false,
   },
   admin: {
