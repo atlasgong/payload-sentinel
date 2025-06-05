@@ -57,11 +57,11 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
-    "@payloadcms/db-sqlite": "3.29.0",
+    "@payloadcms/db-sqlite": "3.40.0",
     "@payloadcms/eslint-config": "3.9.0",
-    "@payloadcms/next": "3.29.0",
-    "@payloadcms/richtext-lexical": "3.29.0",
-    "@payloadcms/ui": "3.29.0",
+    "@payloadcms/next": "3.40.0",
+    "@payloadcms/richtext-lexical": "3.40.0",
+    "@payloadcms/ui": "3.40.0",
     "@swc-node/register": "1.10.9",
     "@swc/cli": "0.6.0",
     "@types/node": "^22.5.4",
@@ -76,7 +76,7 @@
     "husky": "^9.1.7",
     "next": "15.3.0",
     "open": "^10.1.0",
-    "payload": "3.29.0",
+    "payload": "3.40.0",
     "prettier": "^3.4.2",
     "qs-esm": "7.0.2",
     "react": "19.1.0",
@@ -88,7 +88,7 @@
     "vitest": "^3.1.2"
   },
   "peerDependencies": {
-    "payload": "^3.29.0",
+    "payload": "^3.40.0",
     "react": "^19",
     "react-dom": "^19"
   },
