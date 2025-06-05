@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
     "rootDir": "../",
     "noEmit": true,
     "allowJs": true,
@@ -15,11 +19,25 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@payload-config": ["./payload.config.ts"],
-      "payload-sentinel": ["../src/index.ts"],
-      "payload-sentinel/client": ["../src/exports/client.ts"],
-      "payload-sentinel/rsc": ["../src/exports/rsc.ts"]
-    }
+      "@payload-config": [
+        "./payload.config.ts"
+      ],
+      "payload-sentinel": [
+        "../src/index.ts"
+      ],
+      "payload-sentinel/client": [
+        "../src/exports/client.ts"
+      ],
+      "payload-sentinel/rsc": [
+        "../src/exports/rsc.ts"
+      ]
+    },
+    "target": "ES2017",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "**/*.js",
@@ -32,5 +50,8 @@
     "../src/**/*.tsx",
     "next.config.mjs",
     ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
