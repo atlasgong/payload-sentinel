@@ -41,6 +41,12 @@ export type PayloadSentinelConfig = {
   auditLogCollection?: string;
 
   /**
+   * The group for the audit log collection.
+   * @default 'Payload Sentinal'
+   */
+  auditLogCollectionGroup?: string;
+
+  /**
    * The collection slug for authentication/users.
    * This collection will be used to associate audit log entries with users.
    * @default 'users'
