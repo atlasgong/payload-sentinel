@@ -42,7 +42,7 @@ export type PayloadSentinelConfig = {
 
   /**
    * The group for the audit log collection.
-   * @default 'Payload Sentinal'
+   * @default 'Payload Sentinel'
    */
   auditLogCollectionGroup?: string;
 
