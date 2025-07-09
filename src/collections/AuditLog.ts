@@ -3,12 +3,13 @@ import type { CollectionConfig } from "payload";
 import type { PayloadSentinelConfig } from "../config.js";
 
 type AuditLogCollectionOptions = Required<
-  Pick<PayloadSentinelConfig, "access" | "auditLogCollection" | "authCollection" | "dateFormat">
+  Pick<PayloadSentinelConfig, "access" | "auditLogCollection" | "auditLogCollectionGroup" | "authCollection" | "dateFormat">
 >;
 
 export const AuditLog = ({
   access,
   auditLogCollection,
+  auditLogCollectionGroup,
   authCollection,
   dateFormat,
 }: AuditLogCollectionOptions): CollectionConfig => ({
@@ -22,7 +23,7 @@ export const AuditLog = ({
   admin: {
     defaultColumns: ["createdAt", "operation", "resourceURL", "previousVersionId", "user"],
     disableCopyToLocale: true,
-    group: "Payload Sentinel",
+    group: auditLogCollectionGroup,
     useAsTitle: "createdAt",
   },
   fields: [

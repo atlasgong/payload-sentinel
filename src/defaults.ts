@@ -12,6 +12,7 @@ export const defaultConfig: Required<PayloadSentinelConfig> = {
     return Boolean(user);
   },
   auditLogCollection: "audit-log",
+  auditLogCollectionGroup: "Payload Sentinel",
   authCollection: "users",
   dateFormat: "EEE, dd MMM yyyy HH:mm:ss",
   disabled: false,

@@ -30,6 +30,7 @@ export const payloadSentinel =
     const auditLogCollection = AuditLog({
       access: options.access,
       auditLogCollection: options.auditLogCollection,
+      auditLogCollectionGroup: options.auditLogCollectionGroup,
       authCollection: options.authCollection,
       dateFormat: options.dateFormat,
     });
