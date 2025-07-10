@@ -19,24 +19,18 @@ PRs are welcome! If you would like to suggest a particularly large change, you m
 pnpm install
 ```
 
-**Optionally, for local testing**
-
-> [!TIP]
-> The top-level directories `src` and `dev` contain, respectively, the plugin source code and a mock server used for testing.
-
-**Setup your environmental variables for the dev server**
+3. **Setup your environmental variables for the dev server**
 
 ```sh
 cp dev/.env.example dev/.env
 ```
 
-**Run the dev server**
 
-```sh
-pnpm dev
-```
+> [!TIP]
+> The top-level directories `src` and `dev` contain, respectively, the plugin source code and a mock server used for testing. You can start the mock dev server with `pnpm dev`. It comes with Payload CMS, Next.js, and SQLite, and will automatically load the plugin with hot-reloading enabled. Feel free to modify anything in the dev directory for testing; just be sure not to include those changes in your commit.
 
-5. **Build the plugin**
+
+4. **Build the plugin**
 
 ```sh
 pnpm build
