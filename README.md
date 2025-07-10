@@ -18,7 +18,7 @@ Requires Payload CMS v3.29.0 or above.
 Using **npm**:
 
 ```
-npm i payload-sentinel
+npm install payload-sentinel
 ```
 
 Using **pnpm**:
@@ -60,4 +60,4 @@ Payload Sentinel works without any configuration. If you want to customize its b
 
 ## Issues & Feature Requests
 
-Please report issues and request features by opening a Github issue. PRs are welcome; see [CONTRIBUTING.md](./CONTRIBUTING.md) (coming soon).
+Please report issues and request features by opening a GitHub issue. PRs are welcome; see [CONTRIBUTING.md](./CONTRIBUTING.md).
