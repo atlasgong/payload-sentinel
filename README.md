@@ -3,13 +3,11 @@
 
 # Payload Sentinel (A PayloadCMS Plugin)
 
-Payload Sentinel is a lightweight, opinionated audit logger for Payload CMS. It automatically logs user CRUD operations in a centralized audit log, allowing you to track who did what and when, because “I don’t know who changed that” isn’t good enough. Sentinel ensures complete traceability across all user activity; you’ll never lose sight of critical changes again.
-
-Say goodbye to mystery edits forever.
+Payload Sentinel is a lightweight, opinionated audit logger for Payload CMS. It automatically logs user CRUD operations in a centralized audit log, allowing you to track who did what and when, because “I don’t know who changed that” isn’t good enough. Sentinel ensures complete traceability across all user activity.
 
 - Works right out of the box — no configuration is needed.
 - Minimal and self-contained — zero external dependencies.
-- Natively integrates with Payload's versioning support.
+- Natively integrates with Payload's versioning features.
 
 ## Installation
 
