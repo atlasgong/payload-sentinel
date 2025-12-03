@@ -7,8 +7,8 @@ export const PreviousVersionIDCell = (props: DefaultServerCellComponentProps) =>
     return <span>Not Found</span>;
   }
   if (!cellData) {
-    return <span>None</span>;
+    return <span>-</span>;
   }
 
-  return <a href={`/admin/${rowData["resourceURL"]}/versions/${cellData}`}>{cellData}</a>;
+  return <a href={`/admin/${rowData["resourceURL"]}/versions/${cellData}`}>Document {cellData}</a>;
 };

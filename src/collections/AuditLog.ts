@@ -72,7 +72,7 @@ export const AuditLog = ({
         components: { Cell: "payload-sentinel/rsc#PreviousVersionIDCell" },
         readOnly: true,
       },
-      label: "Previous Version ID",
+      label: "Diff",
       required: false,
     },
     {
