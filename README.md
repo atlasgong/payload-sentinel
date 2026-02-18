@@ -1,12 +1,10 @@
-> [!WARNING]
-> **Under development.** Use at your own risk. Please report bugs [here](https://github.com/atlasgong/payload-sentinel/issues).
-
 # Payload Sentinel (A PayloadCMS Plugin)
 
-Payload Sentinel is a lightweight, opinionated audit logger for Payload CMS. It automatically logs user CRUD operations in a centralized audit log, allowing you to track who did what and when, because “I don’t know who changed that” isn’t good enough. Sentinel ensures complete traceability across all user activity.
+Payload Sentinel is a simple audit logger for Payload CMS. It automatically logs user CRUD operations in a centralized audit log collection, allowing you to track who did what and when.
 
-- Works right out of the box — no configuration is needed.
-- Minimal and self-contained — zero external dependencies.
+It: 
+- Works right out of the box, with no configuration needed.
+- Has zero external dependencies.
 - Natively integrates with Payload's versioning features.
 
 ## Installation
@@ -37,7 +35,7 @@ export default buildConfig({
 });
 ```
 
-You're good to go! Payload Sentinel will automatically start logging all user **create**, **update**, and **delete** operations. To enable logging for **read** operations, see [Configuration](#configuration).
+You're good to go! Payload Sentinel will automatically start logging all user create, update, and delete operations. To enable logging for read operations, see [Configuration](#configuration).
 
 > [!TIP]
 > To enable diff viewing in audit logs, make sure versioning is enabled for the relevant collections or globals. Sentinel doesn’t handle diffs itself, nor is it planned to, because Payload already provides built-in versioning, which Sentinel natively integrates with.
