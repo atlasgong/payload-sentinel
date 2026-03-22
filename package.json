@@ -75,7 +75,7 @@
     "eslint-config-next": "15.4.11",
     "graphql": "^16.8.1",
     "husky": "^9.1.7",
-    "next": "15.5.10",
+    "next": "15.5.14",
     "open": "^10.1.0",
     "payload": "3.77.0",
     "prettier": "^3.4.2",
