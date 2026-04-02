@@ -9,7 +9,7 @@ It:
 
 ## Installation
 
-Requires Payload CMS v3.77.0 or above.
+Requires Payload CMS v3.81.0 or above.
 
 Using **npm**:
 
