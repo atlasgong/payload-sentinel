@@ -43,7 +43,7 @@
     "build:types": "tsc -p src/tsconfig.json --outDir dist",
     "clean": "rimraf {dist,*.tsbuildinfo}",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png,json}\" dist/",
-    "dev": "payload run ./dev/server.ts",
+    "dev": "tsx dev/server.ts",
     "dev:generate-importmap": "pnpm dev:payload generate:importmap",
     "dev:generate-types": "pnpm dev:payload generate:types",
     "dev:payload": "cross-env PAYLOAD_CONFIG_PATH=./dev/payload.config.ts payload",
