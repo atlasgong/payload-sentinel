@@ -1,0 +1,39 @@
+.user {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: hsla(211, 95%, 69%, 0.69);
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.system {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: hsla(270, 50%, 60%, 0.7);
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.api {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: hsla(45, 90%, 45%, 0.85);
+  text-transform: capitalize;
+  border-radius: 4px;
+}
+
+.unknown {
+  display: inline-block;
+  padding: 4px 8px;
+  color: #ffffff;
+  text-align: center;
+  background: hsla(0, 0%, 55%, 0.7);
+  text-transform: capitalize;
+  border-radius: 4px;
+}

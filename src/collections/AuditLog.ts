@@ -3,7 +3,10 @@ import type { CollectionConfig } from "payload";
 import type { PayloadSentinelConfig } from "../config.js";
 
 type AuditLogCollectionOptions = Required<
-  Pick<PayloadSentinelConfig, "access" | "auditLogCollection" | "auditLogCollectionGroup" | "authCollection" | "dateFormat">
+  Pick<
+    PayloadSentinelConfig,
+    "access" | "auditLogCollection" | "auditLogCollectionGroup" | "authCollection" | "dateFormat"
+  >
 >;
 
 export const AuditLog = ({
@@ -21,7 +24,7 @@ export const AuditLog = ({
     update: () => false,
   },
   admin: {
-    defaultColumns: ["createdAt", "operation", "resourceURL", "previousVersionId", "user"],
+    defaultColumns: ["createdAt", "operation", "resourceURL", "previousVersionId", "actorType", "user"],
     disableCopyToLocale: true,
     group: auditLogCollectionGroup,
     useAsTitle: "createdAt",
@@ -74,6 +77,16 @@ export const AuditLog = ({
       },
       label: "Previous Version ID",
       required: false,
+    },
+    {
+      name: "actorType",
+      type: "select",
+      admin: {
+        components: { Cell: "payload-sentinel/rsc#ActorTypeCell" },
+        readOnly: true,
+      },
+      options: ["user", "system", "api"],
+      required: true,
     },
     {
       name: "user",
