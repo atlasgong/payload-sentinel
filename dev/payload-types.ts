@@ -164,6 +164,7 @@ export interface AuditLog {
   resourceURL: string;
   documentId: string;
   previousVersionId?: string | null;
+  actorType: 'user' | 'system' | 'api';
   user?: (number | null) | User;
   updatedAt: string;
 }
@@ -310,6 +311,7 @@ export interface AuditLogSelect<T extends boolean = true> {
   resourceURL?: T;
   documentId?: T;
   previousVersionId?: T;
+  actorType?: T;
   user?: T;
   updatedAt?: T;
 }
