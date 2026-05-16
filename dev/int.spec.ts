@@ -60,7 +60,7 @@ describe("plugin tests with default config", () => {
     });
   });
 
-  describe("crud operations are logged", () => {
+  describe("user crud operations are logged", () => {
     it("create collection", async () => {
       try {
         // get user to associate with the audit log
@@ -91,6 +91,7 @@ describe("plugin tests with default config", () => {
         const log = logs.docs[0];
         expect(log.documentId).toStrictEqual(String(createdDoc.id));
         expect(log.operation).toBe("create");
+        expect(log.actorType).toBe("user");
       } finally {
         // wait for operations to complete
         await new Promise((resolve) => process.nextTick(resolve));
@@ -129,6 +130,7 @@ describe("plugin tests with default config", () => {
         const log = logs.docs[0];
         expect(log.documentId).toStrictEqual(String(post.id));
         expect(log.operation).toBe("update");
+        expect(log.actorType).toBe("user");
       } finally {
         // wait for operations to complete
         await new Promise((resolve) => process.nextTick(resolve));
@@ -165,6 +167,7 @@ describe("plugin tests with default config", () => {
         const log = logs.docs[0];
         expect(log.documentId).toStrictEqual(String(post.id));
         expect(log.operation).toBe("delete");
+        expect(log.actorType).toBe("user");
       } finally {
         // wait for operations to complete
         await new Promise((resolve) => process.nextTick(resolve));
@@ -212,6 +215,7 @@ describe("plugin tests with default config", () => {
         const log = logs.docs[0];
         expect(log.documentId).toStrictEqual(String("settings"));
         expect(log.operation).toBe("update");
+        expect(log.actorType).toBe("user");
       } finally {
         // wait for operations to complete
         await new Promise((resolve) => process.nextTick(resolve));
@@ -219,6 +223,40 @@ describe("plugin tests with default config", () => {
     });
 
     it.todo("read global");
+  });
+
+  describe("system operations are logged with system as actor", () => {
+    it("create collection", async () => {
+      try {
+        // create arbitrary post
+        const createdDoc = await payload.create({
+          collection: "posts",
+          data: {
+            example: "jvgkjhsagdfds",
+          },
+        });
+
+        // wait for operations to complete
+        await new Promise((resolve) => process.nextTick(resolve));
+
+        // audit log should've been created
+        const logs = await payload.find({
+          collection: "audit-log",
+          limit: 1,
+          sort: "-createdAt",
+        });
+
+        expect(logs.totalDocs).toBeGreaterThan(0);
+
+        const log = logs.docs[0];
+        expect(log.documentId).toStrictEqual(String(createdDoc.id));
+        expect(log.operation).toBe("create");
+        expect(log.actorType).toBe("system");
+      } finally {
+        // wait for operations to complete
+        await new Promise((resolve) => process.nextTick(resolve));
+      }
+    });
   });
 
   it.todo("read access permission denies unauthorized users");

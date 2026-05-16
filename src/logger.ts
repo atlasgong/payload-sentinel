@@ -47,6 +47,16 @@ interface GlobalLogInformationParams {
   operation: Operation;
 }
 
+function resolveActorType(req: PayloadRequest): "api" | "system" | "user" {
+  if (req.user?.id) {
+    return "user";
+  }
+  if (req.payloadAPI === "local") {
+    return "system";
+  }
+  return "api";
+}
+
 /**
  * Logs an audit entry for a collection operation.
  *
@@ -87,6 +97,7 @@ export async function logCollectionAudit(
     await args.req.payload.create({
       collection: params.auditLogCollection,
       data: {
+        actorType: resolveActorType(args.req),
         createdAt: new Date(),
         documentId: String(args.doc.id),
         operation: params.operation,
@@ -136,6 +147,7 @@ export async function logGlobalAudit(
     await args.req.payload.create({
       collection: params.auditLogCollection,
       data: {
+        actorType: resolveActorType(args.req),
         createdAt: new Date(),
         documentId: args.global.slug,
         operation: params.operation,
