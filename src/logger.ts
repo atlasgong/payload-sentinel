@@ -103,7 +103,6 @@ export async function logCollectionAudit(
         operation: params.operation,
         previousVersionId: previousVersion?.id,
         resourceURL: "collections/" + args.collection.slug + "/" + String(args.doc.id),
-        timestamp: new Date(),
         user: args.req.user?.id,
       },
     });
@@ -153,7 +152,6 @@ export async function logGlobalAudit(
         operation: params.operation,
         previousVersionId: previousVersion?.id,
         resourceURL: "globals/" + args.global.slug,
-        timestamp: new Date(),
         user: args.req.user?.id,
       },
     });
