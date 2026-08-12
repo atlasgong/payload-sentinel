@@ -84,4 +84,11 @@ export type PayloadSentinelConfig = {
    * By default, creates, updates, and deletes are logged.
    */
   operations?: CRUDOperations;
+
+  /**
+   * Auto-delete audit logs older than a specified duration.
+   * Accepts time strings like '1m', '2h', '3d', '7d', etc.
+   * @default null
+   */
+  autoDeleteOlderThan?: string | null;
 };

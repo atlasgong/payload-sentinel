@@ -19,4 +19,5 @@ export const defaultConfig: Required<PayloadSentinelConfig> = {
   excludedCollections: [],
   excludedGlobals: [],
   operations: defaultCRUDOperations,
+  autoDeleteOlderThan: null,
 };
