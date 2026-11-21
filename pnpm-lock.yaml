@@ -19,13 +19,13 @@ importers:
         version: 3.28.0(@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.7.3))(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.7.3))(jest@29.7.0(@types/node@22.19.9)(babel-plugin-macros@3.1.0)(supports-color@7.2.0))(supports-color@7.2.0)(ts-api-utils@2.5.0(typescript@5.7.3))
       '@payloadcms/next':
         specifier: 3.81.0
-        version: 3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
+        version: 3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
       '@payloadcms/richtext-lexical':
         specifier: 3.81.0
-        version: 3.81.0(@faceless-ui/modal@3.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3))(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)(yjs@13.6.26)
+        version: 3.81.0(@faceless-ui/modal@3.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3))(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)(yjs@13.6.26)
       '@payloadcms/ui':
         specifier: 3.81.0
-        version: 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
+        version: 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
       '@playwright/test':
         specifier: 1.58.2
         version: 1.58.2
@@ -66,8 +66,8 @@ importers:
         specifier: ^9.1.7
         version: 9.1.7
       next:
-        specifier: 15.5.28
-        version: 15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
+        specifier: 15.5.29
+        version: 15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
       open:
         specifier: ^10.2.0
         version: 10.2.0
@@ -1659,60 +1659,60 @@ packages:
   '@next/env@15.5.14':
     resolution: {integrity: sha512-aXeirLYuASxEgi4X4WhfXsShCFxWDfNn/8ZeC5YXAS2BB4A8FJi1kwwGL6nvMVboE7fZCzmJPNdMvVHc8JpaiA==}
 
-  '@next/env@15.5.28':
-    resolution: {integrity: sha512-xxW5EBI8fMPuVTPBW7LL980IRbuDXlbkUAwp9DDhtb4Lnich3nJ13uYpvrX4VE74hWPf6AvHHAMmGCidcHjbfg==}
+  '@next/env@15.5.29':
+    resolution: {integrity: sha512-9SrTiTsgORa+KfhlXXAGC1eSs847E+d2MQTPUX+n7R5XA8g/B6ZitfL6GoYHNMLwG3Hzs1wjDH0/ME5WrGMqBQ==}
 
   '@next/eslint-plugin-next@15.4.11':
     resolution: {integrity: sha512-WSY6ZwahlbR3JLfXrBezo2H4OmCeF2aFpguZuTkGV/n7+C10wYP17gxsCXbKVI6TpWmHZysp/AhwovUObPjfEA==}
 
-  '@next/swc-darwin-arm64@15.5.28':
-    resolution: {integrity: sha512-dPoQYXcfSIqx5o+TOXVXO7kONK5qbtNRDeiTfII0bT3puGIT6VF5e0QwmxNZfEZ5Zety5f3m9P/p4xqwfiLlPg==}
+  '@next/swc-darwin-arm64@15.5.29':
+    resolution: {integrity: sha512-vozRDuM23T0faRR0O3oN1eRqjEqUue4Eljhkb9f7urQgzmyzve7j3atzTv3Z1AnjQ9IeVY0X3aS1/an56TOiTg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.5.28':
-    resolution: {integrity: sha512-RgCJ7buBivTH+6sddqaVm+/v8kwMHlFkobvdt3DfETutws5HrxnToMIWSN9X3MZ3aAi7BbKrGZZWUDQLEycXqw==}
+  '@next/swc-darwin-x64@15.5.29':
+    resolution: {integrity: sha512-FzrcEzMZVcp/SqFXCW5SXyPil10bB9l5wpTBapEs9ZMqke3W+hyC5mNAdAa1divn+4SZ7LD5BtK67XvK7SucWQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@15.5.28':
-    resolution: {integrity: sha512-OHXQe13olE59aKe++zHavGcJPh5SLHXi6Anret3BBeq1+qhSuOJDNAli/EDDfxs6UTqA4Qddo4uyYry2slyjiQ==}
+  '@next/swc-linux-arm64-gnu@15.5.29':
+    resolution: {integrity: sha512-FWbWE5P313Yy5062vgY9UspNz/t6Ve/s35X9v6YU7ilsbhqKGabPBPIWcMEPhyomeRdwfv19NAITkU2FFIhGwA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-arm64-musl@15.5.28':
-    resolution: {integrity: sha512-nTB7bB6vfn4ezCJNYP43ukt2o8L3+WxKF/sTcTxepdXsJh3SM9RhlU7wrZYbH7L4HO5M87dqDTwm8587vAkCiw==}
+  '@next/swc-linux-arm64-musl@15.5.29':
+    resolution: {integrity: sha512-xjTHrVisb9GeDSNFOwJI+4UJrKdwlpjz95q8sEvQh46yUp3+JikNcf26pode/HlHktSdJwcHx3iVMCjfPcnU+A==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-linux-x64-gnu@15.5.28':
-    resolution: {integrity: sha512-WXCfVI32rW3xCusoUX1RpZKtyChWU2Zwe27JUDmM3KrXwcDNc9vV4zEq0GKFAURnuQ/Ouo/XqPvB0yh445XZCg==}
+  '@next/swc-linux-x64-gnu@15.5.29':
+    resolution: {integrity: sha512-5WqW7kHscT02wyF8TlbYv9+zx3KhnQeZwk+FkTCr1r7TuvMrqqOZ3RDkdDKl3O0M0Er3VuQEzoEIrj8VX5fjaw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@next/swc-linux-x64-musl@15.5.28':
-    resolution: {integrity: sha512-Miq+NDb/HWsXuxseYxMM6fuEOQXgTziarkKIRpVKCn8W69cEfhQaQr+90pO+u4q2CbJR2wzXmUuCFyZaJs/Nng==}
+  '@next/swc-linux-x64-musl@15.5.29':
+    resolution: {integrity: sha512-I0QJ1Be9vtdq5FABhNcSbkELllA91WnhG+m4BjJHCn1bXAIL8AuDABIKIJ7Bz84T/sIkZP6TvOEWJcKckrX3yQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@next/swc-win32-arm64-msvc@15.5.28':
-    resolution: {integrity: sha512-5LR79lemgDlgxvG7MQJ+zHCkVcrUoQuO7CiIvq3I58vNW4goSOE2b+19Z6FujRWMouvni4gvudYFuFuNxolGWA==}
+  '@next/swc-win32-arm64-msvc@15.5.29':
+    resolution: {integrity: sha512-q4fQFWtR7nH7ZDhU8RIvwNW0S/nHImaZkoOSw7rOXFgoP51HTesm8/8P/w3ACjc9GxqytXj0LZZesykK3arFBw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.5.28':
-    resolution: {integrity: sha512-GNipvXUYROSTf4PXEyH95FrWImIB5zdaK6uEOg0RP1/X2drnvoMwiBkJ0VWdzX7w3iiBm3y5g2TxkKDGVTOQcg==}
+  '@next/swc-win32-x64-msvc@15.5.29':
+    resolution: {integrity: sha512-putWQ+CTEJunAPIPDPfb06Kc4emhYpdM5FoCDHSkC/ym7Dy2xOBMPgBjBbRkw2Hp5/550ACYxCmUtV4k4ui3Iw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -4675,8 +4675,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  next@15.5.28:
-    resolution: {integrity: sha512-JjhLBBY1PNnuwPtcZ7t8yxVeJVYvD2Jyp633J+gRCNbzSt7N0E+xqCf6uQiff3+3qmUkwcF/ksfSsK1xsZ76Tw==}
+  next@15.5.29:
+    resolution: {integrity: sha512-93AMszTCdi9Az7fD5VzcWy46SHCdQF45+i53K0LpDc4dDXCwB9P1SxP1wBYZKW6dF3HJnz41jyEni1vmgCluiw==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -7499,34 +7499,34 @@ snapshots:
 
   '@next/env@15.5.14': {}
 
-  '@next/env@15.5.28': {}
+  '@next/env@15.5.29': {}
 
   '@next/eslint-plugin-next@15.4.11':
     dependencies:
       fast-glob: 3.3.1
 
-  '@next/swc-darwin-arm64@15.5.28':
+  '@next/swc-darwin-arm64@15.5.29':
     optional: true
 
-  '@next/swc-darwin-x64@15.5.28':
+  '@next/swc-darwin-x64@15.5.29':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.5.28':
+  '@next/swc-linux-arm64-gnu@15.5.29':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.5.28':
+  '@next/swc-linux-arm64-musl@15.5.29':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.5.28':
+  '@next/swc-linux-x64-gnu@15.5.29':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.5.28':
+  '@next/swc-linux-x64-musl@15.5.29':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.5.28':
+  '@next/swc-win32-arm64-msvc@15.5.29':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.5.28':
+  '@next/swc-win32-x64-msvc@15.5.29':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -7736,14 +7736,14 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)':
+  '@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)':
     dependencies:
       '@dnd-kit/core': 6.3.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@dnd-kit/modifiers': 9.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       '@dnd-kit/sortable': 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)
       '@payloadcms/graphql': 3.81.0(graphql@16.13.2)(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(typescript@5.7.3)
       '@payloadcms/translations': 3.81.0
-      '@payloadcms/ui': 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
+      '@payloadcms/ui': 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
       busboy: 1.6.0
       dequal: 2.0.3
       file-type: 21.3.4(supports-color@7.2.0)
@@ -7751,7 +7751,7 @@ snapshots:
       graphql-http: 1.22.4(graphql@16.13.2)
       graphql-playground-html: 1.6.30
       http-status: 2.1.0
-      next: 15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
+      next: 15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
       path-to-regexp: 6.3.0
       payload: 3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3)
       qs-esm: 8.0.1
@@ -7765,7 +7765,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@payloadcms/richtext-lexical@3.81.0(@faceless-ui/modal@3.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3))(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)(yjs@13.6.26)':
+  '@payloadcms/richtext-lexical@3.81.0(@faceless-ui/modal@3.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@faceless-ui/scroll-info@2.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(@payloadcms/next@3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3))(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)(yjs@13.6.26)':
     dependencies:
       '@faceless-ui/modal': 3.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       '@faceless-ui/scroll-info': 2.0.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -7780,9 +7780,9 @@ snapshots:
       '@lexical/selection': 0.41.0
       '@lexical/table': 0.41.0
       '@lexical/utils': 0.41.0
-      '@payloadcms/next': 3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
+      '@payloadcms/next': 3.81.0(@types/react@19.2.9)(graphql@16.13.2)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
       '@payloadcms/translations': 3.81.0
-      '@payloadcms/ui': 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
+      '@payloadcms/ui': 3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)
       '@types/uuid': 10.0.0
       acorn: 8.16.0
       bson-objectid: 2.0.4
@@ -7815,7 +7815,7 @@ snapshots:
     dependencies:
       date-fns: 4.1.0
 
-  '@payloadcms/ui@3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)':
+  '@payloadcms/ui@3.81.0(@types/react@19.2.9)(monaco-editor@0.52.2)(next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4))(payload@3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(supports-color@7.2.0)(typescript@5.7.3)':
     dependencies:
       '@date-fns/tz': 1.2.0
       '@dnd-kit/core': 6.3.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -7830,7 +7830,7 @@ snapshots:
       date-fns: 4.1.0
       dequal: 2.0.3
       md5: 2.3.0
-      next: 15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
+      next: 15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4)
       object-to-formdata: 4.5.1
       payload: 3.81.0(graphql@16.13.2)(supports-color@7.2.0)(typescript@5.7.3)
       qs-esm: 8.0.1
@@ -11364,9 +11364,9 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@15.5.28(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4):
+  next@15.5.29(@babel/core@7.29.7(supports-color@7.2.0))(@playwright/test@1.58.2)(babel-plugin-macros@3.1.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(sass@1.77.4):
     dependencies:
-      '@next/env': 15.5.28
+      '@next/env': 15.5.29
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001806
       postcss: 8.4.31
@@ -11374,14 +11374,14 @@ snapshots:
       react-dom: 19.2.1(react@19.2.1)
       styled-jsx: 5.1.6(@babel/core@7.29.7(supports-color@7.2.0))(babel-plugin-macros@3.1.0)(react@19.2.1)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.5.28
-      '@next/swc-darwin-x64': 15.5.28
-      '@next/swc-linux-arm64-gnu': 15.5.28
-      '@next/swc-linux-arm64-musl': 15.5.28
-      '@next/swc-linux-x64-gnu': 15.5.28
-      '@next/swc-linux-x64-musl': 15.5.28
-      '@next/swc-win32-arm64-msvc': 15.5.28
-      '@next/swc-win32-x64-msvc': 15.5.28
+      '@next/swc-darwin-arm64': 15.5.29
+      '@next/swc-darwin-x64': 15.5.29
+      '@next/swc-linux-arm64-gnu': 15.5.29
+      '@next/swc-linux-arm64-musl': 15.5.29
+      '@next/swc-linux-x64-gnu': 15.5.29
+      '@next/swc-linux-x64-musl': 15.5.29
+      '@next/swc-win32-arm64-msvc': 15.5.29
+      '@next/swc-win32-x64-msvc': 15.5.29
       '@playwright/test': 1.58.2
       sass: 1.77.4
       sharp: 0.34.5
